@@ -44,4 +44,8 @@ class DetailBeasiswa:
 	def filterMinGPA(gpa):
 		return DBManager.readfromDetailBeasiswaByMinGPA(gpa)
 
+	#create 
+	def insertDetail(info):
+		return DBManager.inserttoDetailBeasiswa(info)
+
 
