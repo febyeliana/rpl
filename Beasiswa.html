@@ -9,7 +9,7 @@
 	  box-sizing: border-box;
 	}
 	body {
-	  font-family: Arial, Helvetica
+	  font-family: Arial
 	  margin: 0;
 	}
 
@@ -128,10 +128,10 @@
 		<h2 align ="center">Beasiswa</h2>
 		<div class="selection">
 			<label>Select</label>
-			<button>All</button>
-			<button>Relevant</button>
+			<button type="button" id="All" onclick="divVisibility('All')">All</button>
+			<button type="button" id="Relevant" onclick="divVisibility('filter')">Relevant</button>
 		</div>
-		<div class="filter">
+		<div class="filter" style="display:none" id="filter">
 			<label>Filter</label>
 			<select>
 			<option value="IPK">IPK</option>
@@ -139,9 +139,31 @@
 			<option value="Fakultas">Fakultas</option>
 			<option value="Semester">Semester</option>
 			</select>
-		</div>
-		<div class="listbeasiswa">
-			<label>Nama beasiswa</label>
-	</div>
+		</div>	
+		<script>
+			 var divs = ["filter","main","side"];
+    		 var visibleDivId = null;
+    		 function divVisibility(divId) {
+     		 if(visibleDivId === divId) {
+        		visibleDivId = null;
+      	   } else {
+        		visibleDivId = divId;
+      	   }
+      		hideNonVisibleDivs();
+    	   }
+    	function hideNonVisibleDivs() {
+      	var i, divId, div;
+      	for(i = 0; i < divs.length; i++) {
+        	divId = divs[i];
+        	div = document.getElementById(divId);
+        	if(visibleDivId === divId) {
+          		div.style.display = "block";
+            } 
+            else {
+         	 div.style.display = "none";
+        	}
+     	 }
+    	}
+    </script>
 </body>
 </html>
