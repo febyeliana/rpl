@@ -1,13 +1,9 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import json
-import datetime
 
 class DBManager:
-	def dateConverter(o):
-		if isinstance(o, datetime,datetime):
-			return o.__str__()
-
+	#connection handler
 	def connect():
 		#connect to postgresql
 		conn = None
@@ -24,7 +20,7 @@ class DBManager:
 		if conn is not None:
 			conn.close()
 			print("Database connection closed")
-
+	#read functions
 	def readfromPenyedia():
 		conn = DBManager.connect()
 		try:
@@ -32,7 +28,7 @@ class DBManager:
 			cur.execute(""" SELECT * FROM penyedia_beasiswa """)
 			json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
@@ -47,12 +43,12 @@ class DBManager:
 			values = {'id':id_penyedia}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid id_penyedia','id_penyedia':id_penyedia}
+				dump = [{'Message':'Invalid id_penyedia','id_penyedia':id_penyedia}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
@@ -66,7 +62,7 @@ class DBManager:
 			cur.execute(""" SELECT * FROM detail_beasiswa """)
 			json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
@@ -81,12 +77,12 @@ class DBManager:
 			values = {'id':fakultas}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas','Fakultas':fakultas}
+				dump = [{'Message':'Invalid fakultas','Fakultas':fakultas}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -102,12 +98,12 @@ class DBManager:
 			values = {'f':fakultas, 'j':jurusan}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas or jurusan','Fakultas':fakultas,'Jurusan':jurusan}
+				dump = [{'Message':'Invalid fakultas or jurusan','Fakultas':fakultas,'Jurusan':jurusan}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -123,12 +119,12 @@ class DBManager:
 			values = {'f':fakultas, 'j':jurusan, 's':semester}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas, jurusan, or semester','Fakultas':fakultas,'Jurusan':jurusan,'Semester':semester}
+				dump = [{'Message':'Invalid fakultas, jurusan, or semester','Fakultas':fakultas,'Jurusan':jurusan,'Semester':semester}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -144,12 +140,12 @@ class DBManager:
 			values = {'f':fakultas, 'j':jurusan, 's':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas, jurusan, or gpa','Fakultas':fakultas,'Jurusan':jurusan,'GPA':gpa}
+				dump = [{'Message':'Invalid fakultas, jurusan, or gpa','Fakultas':fakultas,'Jurusan':jurusan,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -165,12 +161,12 @@ class DBManager:
 			values = {'f':fakultas, 's':semester}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas or semester','Fakultas':fakultas, 'Semester':semester}
+				dump = [{'Message':'Invalid fakultas or semester','Fakultas':fakultas, 'Semester':semester}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -186,12 +182,12 @@ class DBManager:
 			values = {'f':fakultas, 's':semester, 'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas, semester, or gpa','Fakultas':fakultas, 'Semester':semester,'GPA':gpa}
+				dump = [{'Message':'Invalid fakultas, semester, or gpa','Fakultas':fakultas, 'Semester':semester,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -207,12 +203,12 @@ class DBManager:
 			values = {'f':fakultas, 'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas or gpa','Fakultas':fakultas, 'GPA':gpa}
+				dump = [{'Message':'Invalid fakultas or gpa','Fakultas':fakultas, 'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -228,12 +224,12 @@ class DBManager:
 			values = {'f':fakultas, 'j':jurusan,'s':semester, 'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid fakultas, jurusan, semester, or gpa','Fakultas':fakultas, 'Jurusan':jurusan,'Semester':semester,'GPA':gpa}
+				dump = [{'Message':'Invalid fakultas, jurusan, semester, or gpa','Fakultas':fakultas, 'Jurusan':jurusan,'Semester':semester,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -250,12 +246,12 @@ class DBManager:
 			values = {'j':jurusan}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid jurusan','Jurusan':jurusan}
+				dump = [{'Message':'Invalid jurusan','Jurusan':jurusan}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -271,12 +267,12 @@ class DBManager:
 			values = {'j':jurusan,'s':semester}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid jurusan or semester','Jurusan':jurusan,'Semester':semester}
+				dump = [{'Message':'Invalid jurusan or semester','Jurusan':jurusan,'Semester':semester}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -292,12 +288,12 @@ class DBManager:
 			values = {'j':jurusan,'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid jurusan or gpa','Jurusan':jurusan,'GPA':gpa}
+				dump = [{'Message':'Invalid jurusan or gpa','Jurusan':jurusan,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -313,12 +309,12 @@ class DBManager:
 			values = {'j':jurusan,'s':semester, 'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid jurusan, semester, or gpa','Jurusan':jurusan,'Semester':semester,'GPA':gpa}
+				dump = [{'Message':'Invalid jurusan, semester, or gpa','Jurusan':jurusan,'Semester':semester,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -334,12 +330,12 @@ class DBManager:
 			values = {'s':semester}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid semester','Semester':semester}
+				dump = [{'Message':'Invalid semester','Semester':semester}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -355,12 +351,12 @@ class DBManager:
 			values = {'s':semester, 'g':gpa}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = {'Message':'Invalid semester or gpa','Semester':semester,'GPA':gpa}
+				dump = [{'Message':'Invalid semester or gpa','Semester':semester,'GPA':gpa}]
 				json_result = json.dumps(dump)
 			else:
-				json_result = json.dumps(cur.fetchall())[0]
+				json_result = json.dumps(cur.fetchall())
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to read record from mobile table'}
+			dump = [{'Message': 'Failed to read record from mobile table'}]
 			json_result = json.dumps(dump)
 			print(error)
 		finally:
@@ -368,7 +364,42 @@ class DBManager:
 			return json_result
 			DBManager.close(conn)
 
-	
+	def readfromMahasiswa():
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			cur.execute(""" SELECT * FROM mahasiswa """)
+			json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			return json_result
+			DBManager.close(conn)
+
+	def readfromMahasiswaByNIM(nim):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM mahasiswa WHERE nim = %(n)s """
+			values = {'n':nim}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid NIM','NIM':nim}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			return json_result
+			DBManager.close(conn)
+
+	#create function
 	def inserttoPenyediaBeasiswa(info):
 		formatted_info = json.loads(info)
 		conn = DBManager.connect()
@@ -379,7 +410,7 @@ class DBManager:
 			cur.execute(query,values)
 			conn.commit()
 		except(Exception, psycopg2.Error) as error:
-			dump = {'Message': 'Failed to insert record to mobile table'}
+			dump = [{'Message': 'Failed to insert record to mobile table'}]
 			json_result = json.dumps(dump)
 			print(json_result)
 			return json_result
@@ -441,13 +472,14 @@ class DBManager:
 		finally:
 			DBManager.close(conn)
 
-	def updatetoPilihanBeasiswa(info):
+	#update functions
+	def updatetoPilihanBeasiswa(info,id_penyedia,nim):
 		formatted_info = json.loads(info)
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ UPDATE pilihan_beasiswa SET status_seleksi = %(s)s WHERE id_penyedia = %(i)s, nim = %(n)s, waktu_submit = %(w)s  """
-			values = {'s':formatted_info['status_seleksi'], 'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 'w':formatted_info['waktu_submit']}
+			query = """ UPDATE pilihan_beasiswa SET status_seleksi = %(s)s WHERE id_penyedia = %(i)s AND nim = %(n)s """
+			values = {'s':formatted_info['status_seleksi'], 'i':id_penyedia, 'n':nim}
 			cur.execute(query,values)
 			conn.commit()
 		except(Exception, psycopg2.Error) as error:
