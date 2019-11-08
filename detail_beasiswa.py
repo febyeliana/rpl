@@ -1,9 +1,12 @@
 from dbInterface import DBManager
 
 class DetailBeasiswa:
-	#read
+	#read 
+	#read all
 	def lihatSemua():
 		return DBManager.readfromDetailBeasiswa()
+		
+	#filter by fakultas and its combinations
 	def filterFakultas(fakultas):
 		return DBManager.readfromDetailBeasiswaByFakultas(fakultas)
 	def filterFakultasJurusan(fakultas,jurusan):
@@ -21,5 +24,24 @@ class DetailBeasiswa:
 	def filterAll(fakultas,jurusan,semester,gpa):
 		return DBManager.readfromDetailBeasiswaByAllParameters(fakultas,jurusan,semester,gpa)
 
+	#filter by jurusan and its combinations
+	def filterJurusan(jurusan):
+		return DBManager.readfromDetailBeasiswaByJurusan(jurusan)
+	def filterJurusanSemester(jurusan,semester):
+		return DBManager.readfromDetailBeasiswaByJurusanAndSemester(jurusan,semester)
+	def filterJurusanMinGPA(jurusan,gpa):
+		return DBManager.readfromDetailBeasiswaByJurusanAndMinGPA(jurusan,gpa)
+	def filterJurusanSemesterMinGPA(jurusan,semester,gpa):
+		return DBManager.readfromDetailBeasiswaByJurusanSemesterMinGPA(jurusan,semester,gpa)
+
+	#filter by semester and its combinations
+	def filterSemester(semester):
+		return DBManager.readfromDetailBeasiswaBySemester(semester)
+	def filterSemesterMinGPA(semester,gpa):
+		return DBManager.readfromDetailBeasiswaBySemesterMinGPA(semester,gpa)
+
+	#filter by gpa
+	def filterMinGPA(gpa):
+		return DBManager.readfromDetailBeasiswaByMinGPA(gpa)
 
 
