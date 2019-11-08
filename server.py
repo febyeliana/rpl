@@ -70,7 +70,56 @@ def detailbeasiswa_fakultas_jurusan_semester_gpa(fakultas,jurusan,semester,gpa):
 	resp = make_response(DetailBeasiswa.filterAll(fakultas,jurusan,semester,gpa),200)
 	resp.mimetype = "application/json"
 	return resp
-	
+
+#filter by jurusan
+@app.route('/detailbeasiswa/jurusan/<jurusan>', methods = ['GET'])
+def detailbeasiswa_jurusan(jurusan):
+	resp = make_response(DetailBeasiswa.filterJurusan(jurusan),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by jurusan semester
+@app.route('/detailbeasiswa/jurusan/<jurusan>/semester/<semester>', methods = ['GET'])
+def detailbeasiswa_jurusan_semester(jurusan,semester):
+	resp = make_response(DetailBeasiswa.filterJurusanSemester(jurusan,semester),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by jurusan gpa
+@app.route('/detailbeasiswa/jurusan/<jurusan>/gpa/<gpa>', methods = ['GET'])
+def detailbeasiswa_jurusan_gpa(jurusan,gpa):
+	resp = make_response(DetailBeasiswa.filterJurusanMinGPA(jurusan,gpa),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by jurusan semester gpa
+@app.route('/detailbeasiswa/jurusan/<jurusan>/semester/<semester>/gpa/<gpa>', methods = ['GET'])
+def detailbeasiswa_jurusan_semester_gpa(jurusan,semester,gpa):
+	resp = make_response(DetailBeasiswa.filterJurusanSemesterMinGPA(jurusan,semester,gpa),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by semester
+@app.route('/detailbeasiswa/semester/<semester>', methods = ['GET'])
+def detailbeasiswa_semester(semester):
+	resp = make_response(DetailBeasiswa.filterSemester(semester),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by semester gpa
+@app.route('/detailbeasiswa/semester/<semester>/gpa/<gpa>', methods = ['GET'])
+def detailbeasiswa_semester_gpa(semester,gpa):
+	resp = make_response(DetailBeasiswa.filterSemesterMinGPA(semester,gpa),200)
+	resp.mimetype = "application/json"
+	return resp
+
+#filter by gpa
+@app.route('/detailbeasiswa/gpa/<gpa>', methods = ['GET'])
+def detailbeasiswa_gpa(gpa):
+	resp = make_response(DetailBeasiswa.filterMinGPA(gpa),200)
+	resp.mimetype = "application/json"
+	return resp
+
 if __name__ == '__main__':
 	print('Maid cafe running at port 9000')
 	#jalankan server
