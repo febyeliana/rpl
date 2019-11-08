@@ -364,6 +364,27 @@ class DBManager:
 			return json_result
 			DBManager.close(conn)
 
+	def readfromDetailBeasiswaByMinGPA(gpa):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM detail_beasiswa WHERE min_gpa <= %(g)s """
+			values = {'g':gpa}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid gpa','GPA':gpa}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			return json_result
+			DBManager.close(conn)
+
 	def readfromMahasiswa():
 		conn = DBManager.connect()
 		try:
