@@ -133,12 +133,13 @@
 		</div>
 		<div class="filter" style="display:none" id="filter">
 			<label>Filter</label>
-			<select>
-			<option value="IPK">IPK</option>
-			<option value="Jurusan">Jurusan</option>
-			<option value="Fakultas">Fakultas</option>
-			<option value="Semester">Semester</option>
-			</select>
+			<form>
+			<input type="checkbox" value="IPK">IPK</input>
+			<input type="checkbox" type="checkbox" value="Jurusan">Jurusan</input>
+			<input type="checkbox" value="Fakultas">Fakultas</input>
+			<input type="checkbox" value="Semester">Semester</input><br>
+			<input type="button" value="Submit"></input>
+			</form>
 		</div>	
 		<script>
 			 var divs = ["filter","main","side"];
@@ -151,19 +152,19 @@
       	   }
       		hideNonVisibleDivs();
     	   }
-    	function hideNonVisibleDivs() {
-      	var i, divId, div;
-      	for(i = 0; i < divs.length; i++) {
-        	divId = divs[i];
-        	div = document.getElementById(divId);
-        	if(visibleDivId === divId) {
-          		div.style.display = "block";
-            } 
-            else {
-         	 div.style.display = "none";
-        	}
-     	 }
-    	}
+    		function hideNonVisibleDivs() {
+      		var i, divId, div;
+      		for(i = 0; i < divs.length; i++) {
+        		divId = divs[i];
+        		div = document.getElementById(divId);
+        		if(visibleDivId === divId) {
+          			div.style.display = "block";
+            	} 
+            	else {
+         	 		div.style.display = "none";
+        		}
+     	 	}
+    		}
     </script>
 </body>
 </html>
