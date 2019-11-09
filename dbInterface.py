@@ -353,6 +353,7 @@ class DBManager:
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
 				dump = [{'Message':'Invalid semester or gpa','Semester':semester,'GPA':gpa}]
+<<<<<<< HEAD
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
@@ -374,6 +375,8 @@ class DBManager:
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
 				dump = [{'Message':'Invalid gpa','GPA':gpa}]
+=======
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
@@ -400,6 +403,44 @@ class DBManager:
 			DBManager.close(conn)
 			return json_result
 
+<<<<<<< HEAD
+=======
+	def readfromDetailBeasiswaByMinGPA(gpa):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM detail_beasiswa WHERE min_gpa <= %(g)s """
+			values = {'g':gpa}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid gpa','GPA':gpa}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			return json_result
+			DBManager.close(conn)
+
+	def readfromMahasiswa():
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			cur.execute(""" SELECT * FROM mahasiswa """)
+			json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			return json_result
+			DBManager.close(conn)
+
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 	def readfromMahasiswaByNIM(nim):
 		conn = DBManager.connect()
 		try:
@@ -418,8 +459,13 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
+<<<<<<< HEAD
 			DBManager.close(conn)
 			return json_result
+=======
+			return json_result
+			DBManager.close(conn)
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 
 	def readfromPilihanBeasiswa():
 		conn = DBManager.connect()
@@ -432,8 +478,13 @@ class DBManager:
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
+<<<<<<< HEAD
 			DBManager.close(conn)
 			return json_result
+=======
+			return json_result
+			DBManager.close(conn)
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 
 	def readfromPilihanBeasiswaByIDPenyedia(id_penyedia):
 		conn = DBManager.connect()
@@ -453,8 +504,13 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
+<<<<<<< HEAD
 			DBManager.close(conn)
 			return json_result
+=======
+			return json_result
+			DBManager.close(conn)
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 
 	def readfromPilihanBeasiswaByNIM(nim):
 		conn = DBManager.connect()
@@ -474,8 +530,13 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
+<<<<<<< HEAD
 			DBManager.close(conn)
 			return json_result
+=======
+			return json_result
+			DBManager.close(conn)
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 
 	#create function
 	def inserttoPenyediaBeasiswa(info):
@@ -494,6 +555,10 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
+<<<<<<< HEAD
+=======
+			return json_result
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 			DBManager.close(conn)
 			return json_result
 
@@ -513,6 +578,10 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
+<<<<<<< HEAD
+=======
+			return json_result
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 			DBManager.close(conn)
 			return json_result
 
@@ -532,6 +601,10 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
+<<<<<<< HEAD
+=======
+			return json_result
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 			DBManager.close(conn)
 			return json_result
 
@@ -551,6 +624,10 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
+<<<<<<< HEAD
+=======
+			return json_result
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 			DBManager.close(conn)
 			return json_result
 
@@ -571,6 +648,10 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
+<<<<<<< HEAD
+=======
+			return json_result
+>>>>>>> e7a1fc8d9b6268e88cb09bf2d1f846a015a4fd78
 			DBManager.close(conn)
 			return json_result
 	
