@@ -1,0 +1,152 @@
+body{
+	font-family: Arial;
+}
+
+#content{
+	margin: 3% 5%;
+}
+
+.top{
+	overflow:hidden;
+	background-color:#87BFBF;
+	color:#fff;
+	font-size:30px;
+	padding:30px;
+}
+
+.container{
+	width:80%;
+	margin:10;
+	overflow:hidden;
+}
+
+#navbar{
+	background-color:#F2F2F2;
+	color:#5D5D5D;
+}
+
+#navbar ul{
+	padding:0px;
+	list-style: none;
+}
+
+#navbar li{
+	display:inline;
+	padding: 0px;
+}
+
+#navbar a{
+	color:#5D5D5D;
+	text-decoration: none;
+	font-size:16px;
+	padding:15px;
+	border-radius: 10px;
+}
+
+#navbar a:hover{
+	color:#BEBBBB;
+	transition: 0.4s;
+}
+
+.now{
+	background-color: #BEBBBB;
+	font-weight: bold;
+
+}
+
+.button{
+	background-color:#5D5D5D;
+	color:#fff;
+	padding:10px 15px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+
+.button:hover{
+	background-color:#5D5D5D;
+	color:#fff;
+}
+.buttonProfile{
+	position: absolute;
+	right: 10%;
+}
+
+.bEdit{
+	background-color:#003AA7;
+	color:#fff;
+	padding:10px 15px;
+	border-radius: 10px;
+	text-decoration: none;
+
+}
+.bEdit:hover{
+	background-color:#04225A;
+	transition: 0.4s;
+}
+
+.bSave{
+	background-color:#AFAFAF;
+	color:#fff;
+	padding:10px 15px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+.tRiwayat{
+	border-collapse: collapse;
+	margin: 3% 0%;
+	min-width: 600px;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.tRiwayat thead tr{
+	background-color: #87BFBF;
+	color: #fff;
+	text-align: left;
+}
+
+.tRiwayat th,
+.tRiwayat td{
+	padding: 12px 15px
+}
+
+.tRiwayat tbody tr{
+	border-bottom: 1px solid #ddd;
+}
+
+.tRiwayat tbody tr:nth-of-type(even){
+	background-color: #f3f3f3;
+}
+
+.tRiwayat tbody tr:last-of-type{
+	border-bottom:2px solid #87BFBF;
+}
+
+.tPublikasi{
+	border-collapse: collapse;
+	margin: 3% 0%;
+	min-width: 600px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+.tPublikasi th,
+.tPublikasi td{
+	padding: 12px 15px
+}
+
+.tPublikasi tr{
+	border-bottom: 1px solid #ddd;
+}
+
+.tPublikasi tr:last-of-type{
+	border-bottom:none;
+}
+
+.tRiwayat th,
+.tRiwayat td{
+	padding: 12px 15px
+}
