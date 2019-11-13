@@ -20,6 +20,16 @@ class DetailBeasiswa:
                 formatted_info[i]['ketersediaan'] = 'valid'
         return(json.dumps(formatted_info))
 
+    def checkDictResult(info):
+    #check whether json is an error message or not
+        for key in json.loads(info)[0]:
+            if key == 'Message':
+                break
+            elif key == 'id_penyedia':
+                info = DetailBeasiswa.checkDate(info)
+                break 
+        return info
+
     # read
     # read all
 
@@ -30,75 +40,75 @@ class DetailBeasiswa:
     # filter by fakultas and its combinations
     def filterFakultas(fakultas):
         info = DBManager.readfromDetailBeasiswaByFakultas(fakultas)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info)) 
 
     def filterFakultasJurusan(fakultas, jurusan):
         info = DBManager.readfromDetailBeasiswaByFakultasAndJurusan(
             fakultas, jurusan)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info)) 
 
     def filterFakultasJurusanSemester(fakultas, jurusan, semester):
         info = DBManager.readfromDetailBeasiswaByFakultasAndJurusanAndSemester(
             fakultas, jurusan, semester)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterFakultasJurusanMinGPA(fakultas, jurusan, gpa):
         info = DBManager.readfromDetailBeasiswaByFakultasAndJurusanAndMinGPA(
             fakultas, jurusan, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterFakultasSemester(fakultas, semester):
         info = DBManager.readfromDetailBeasiswaByFakultasAndSemester(
             fakultas, semester)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterFakultasSemesterMinGPA(fakultas, semester, gpa):
         info = DBManager.readfromDetailBeasiswaByFakultasAndSemesterAndMinGPA(
             fakultas, semester, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterFakultasMinGPA(fakultas, gpa):
         info = DBManager.readfromDetailBeasiswaByFakultasAndMinGPA(
             fakultas, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterAll(fakultas, jurusan, semester, gpa):
         info = DBManager.readfromDetailBeasiswaByAllParameters(
             fakultas, jurusan, semester, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
 # filter by jurusan and its combinations
     def filterJurusan(jurusan):
         info = DBManager.readfromDetailBeasiswaByJurusan(jurusan)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterJurusanSemester(jurusan, semester):
         info = DBManager.readfromDetailBeasiswaByJurusanAndSemester(
             jurusan, semester)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterJurusanMinGPA(jurusan, gpa):
         info = DBManager.readfromDetailBeasiswaByJurusanAndMinGPA(jurusan, gpa)
-        return DetailBeasiswa.checkDate(info)
-
+        return(DetailBeasiswa.checkDictResult(info))
+        
     def filterJurusanSemesterMinGPA(jurusan, semester, gpa):
         info = DBManager.readfromDetailBeasiswaByJurusanSemesterMinGPA(
             jurusan, semester, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
 # filter by semester and its combinations
     def filterSemester(semester):
         info = DBManager.readfromDetailBeasiswaBySemester(semester)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
     def filterSemesterMinGPA(semester, gpa):
         info = DBManager.readfromDetailBeasiswaBySemesterMinGPA(semester, gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
 # filter by gpa
     def filterMinGPA(gpa):
         info = DBManager.readfromDetailBeasiswaByMinGPA(gpa)
-        return DetailBeasiswa.checkDate(info)
+        return(DetailBeasiswa.checkDictResult(info))
 
 # create
     def insertDetail(info):
