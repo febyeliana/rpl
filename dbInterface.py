@@ -9,7 +9,7 @@ class DBManager:
 		conn = None
 		try:
 			#connect using md5 method
-			conn = psycopg2.connect(host="192.168.43.206",database="pbmps",user="postgres",password="swordbeach")
+			conn = psycopg2.connect(host="0.0.0.0",database="pbmps",user="postgres",password="postgres")
 			print("Connected to database")
 			return conn
 		except(Exception, psycopg2.DatabaseError) as error:
