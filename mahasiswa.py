@@ -3,6 +3,10 @@ from dbInterface import DBManager
 
 class Mahasiswa:
     # read functions
+    # login
+    def login():
+        return DBManager.readfromLoginMahasiswa()
+
     def lihatSemua():
         return DBManager.readfromMahasiswa()
 

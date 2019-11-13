@@ -3,7 +3,11 @@ from dbInterface import DBManager
 
 class PenyediaBeasiswa:
     # read
+    # login
+    def login():
+        return DBManager.readfromLoginPenyedia()
     # read all
+
     def lihatSemua():
         return DBManager.readfromPenyedia()
     # filter by ID

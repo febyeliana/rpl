@@ -7,6 +7,14 @@ from pilihan_beasiswa import PilihanBeasiswa
 app = Flask(__name__)
 
 # mahasiswa routes
+# login
+@app.route('/mahasiswa/login', methods=['GET'])
+def mahasiswa_login():
+    # method GET
+    resp = make_response(Mahasiswa.login(), 200)
+    resp.mimetype = "application/json"
+    return resp
+
 # lihat semua mahasiswa
 @app.route('/mahasiswa', methods=['GET', 'POST'])
 def mahasiswa():
@@ -27,6 +35,14 @@ def mahasiswa_nim(nim):
     return resp
 
 # penyedia beasiswa routes
+# login
+@app.route('/penyedia/login', methods=['GET'])
+def penyedia_login():
+    # method GET
+    resp = make_response(PenyediaBeasiswa.login(), 200)
+    resp.mimetype = "application/json"
+    return resp
+
 # lihat semua penyedia beasiswa
 @app.route('/penyedia', methods=['GET', 'POST'])
 def penyediabeasiswa():
