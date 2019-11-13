@@ -243,4 +243,4 @@ def pilihanbeasiswa_nim_id(id_penyedia, nim):
 if __name__ == '__main__':
     print('Maid cafe running at port 9000')
     # jalankan server
-    app.run(threaded=True, host='192.168.43.206', port=9000)
+    app.run(threaded=True, host='3.227.193.57', port=9000)
