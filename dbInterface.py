@@ -471,7 +471,6 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
-			
 
 	def readfromPilihanBeasiswaByNIM(nim):
 		conn = DBManager.connect()
@@ -493,6 +492,34 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+	
+	def readfromLoginMahasiswa():
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			cur.execute(""" SELECT * FROM login_mahasiswa """)
+			json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+	
+	def readfromLoginPenyedia():
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			cur.execute(""" SELECT * FROM login_penyedia """)
+			json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
 
 	#create function
 	def inserttoPenyediaBeasiswa(info):
@@ -500,9 +527,15 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO penyedia_beasiswa(nama, email, no_telepon, alamat, website) VALUES (%(n)s, %(e)s, %(t)s, %(a)s, %(w)s)  """
+			query = """ INSERT INTO penyedia_beasiswa(nama, email, no_telepon, alamat, website) VALUES (%(n)s, %(e)s, %(t)s, %(a)s, %(w)s) returning id_penyedia """
 			values = {'n':formatted_info['nama'], 'e':formatted_info['email'], 't':formatted_info['no_telepon'], 'a':formatted_info['alamat'], 'w':formatted_info['website']}
 			dump =[{'Message':'Record successfully inserted to mobile table'}]
+			cur.execute(query,values)
+			result = cur.fetchall()
+			for row in result:
+				id_penyedia = (row['id_penyedia'])
+			query = """ UPDATE login_mapping_penyedia SET id_penyedia = %(i)s WHERE username = %(u)s """
+			values = {'i':id_penyedia, 'u':formatted_info['username']}
 			cur.execute(query,values)
 			conn.commit()
 		except(Exception, psycopg2.Error) as error:
@@ -542,6 +575,9 @@ class DBManager:
 			query = """ INSERT INTO mahasiswa(nim, email, password, nama, no_telepon, usia, jurusan, semester, gpa, pendapatan, berkas) VALUES (%(ni)s, %(e)s, %(pw)s, %(na)s, %(no)s, %(u)s, %(j)s, %(s)s, %(g)s, %(p)s, %(b)s)  """
 			values = {'ni':formatted_info['nim'], 'e':formatted_info['email'], 'pw':formatted_info['password'], 'na':formatted_info['nama'], 'no':formatted_info['no_telepon'], 'u':formatted_info['usia'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['gpa'], 'p':formatted_info['pendapatan'], 'b':formatted_info['berkas']}
 			dump =[{'Message':'Record successfully inserted to mobile table'}]
+			cur.execute(query,values)
+			query = """ UPDATE login_mapping_mahasiswa SET nim = %(n)s WHERE username = %(u)s """
+			values = {'n':formatted_info['nim'], 'u':formatted_info['username']}
 			cur.execute(query,values)
 			conn.commit()
 		except(Exception, psycopg2.Error) as error:
@@ -593,3 +629,6 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	
+	

@@ -28,7 +28,7 @@ def mahasiswa_nim(nim):
 
 # penyedia beasiswa routes
 # lihat semua penyedia beasiswa
-@app.route('/penyediabeasiswa', methods=['GET', 'POST'])
+@app.route('/penyedia', methods=['GET', 'POST'])
 def penyediabeasiswa():
     # method GET
     if request.method == 'GET':
@@ -40,7 +40,7 @@ def penyediabeasiswa():
     return resp
 
 # filter by ID
-@app.route('/penyediabeasiswa/id/<id_penyedia>', methods=['GET'])
+@app.route('/penyedia/id/<id_penyedia>', methods=['GET'])
 def penyediabeasiswa_id(id_penyedia):
     resp = make_response(PenyediaBeasiswa.filterID(id_penyedia), 200)
     resp.mimetype = "application/json"
@@ -48,7 +48,7 @@ def penyediabeasiswa_id(id_penyedia):
 
 # detail beasiswa routes
 # lihat semua detail beasiswa
-@app.route('/detailbeasiswa', methods=['GET', 'POST'])
+@app.route('/beasiswa', methods=['GET', 'POST'])
 def detailbeasiswa():
     # method GET
     if request.method == 'GET':
@@ -60,14 +60,14 @@ def detailbeasiswa():
     return resp
 
 # filter by fakultas
-@app.route('/detailbeasiswa/fakultas/<fakultas>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>', methods=['GET'])
 def detailbeasiswa_fakultas(fakultas):
     resp = make_response(DetailBeasiswa.filterFakultas(fakultas), 200)
     resp.mimetype = "application/json"
     return resp
 
 # filter by fakultas jurusan
-@app.route('/detailbeasiswa/fakultas/<fakultas>/jurusan/<jurusan>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/jurusan/<jurusan>', methods=['GET'])
 def detailbeasiswa_fakultas_jurusan(fakultas, jurusan):
     resp = make_response(
         DetailBeasiswa.filterFakultasJurusan(fakultas, jurusan), 200)
@@ -75,7 +75,7 @@ def detailbeasiswa_fakultas_jurusan(fakultas, jurusan):
     return resp
 
 # filter by fakultas jurusan semester
-@app.route('/detailbeasiswa/fakultas/<fakultas>/jurusan/<jurusan>/semester/<semester>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/jurusan/<jurusan>/semester/<semester>', methods=['GET'])
 def detailbeasiswa_fakultas_jurusan_semester(fakultas, jurusan, semester):
     resp = make_response(DetailBeasiswa.filterFakultasJurusanSemester(
         fakultas, jurusan, semester), 200)
@@ -83,7 +83,7 @@ def detailbeasiswa_fakultas_jurusan_semester(fakultas, jurusan, semester):
     return resp
 
 # filter by fakultas jurusan gpa
-@app.route('/detailbeasiswa/fakultas/<fakultas>/jurusan/<jurusan>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/jurusan/<jurusan>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_fakultas_jurusan_gpa(fakultas, jurusan, gpa):
     resp = make_response(DetailBeasiswa.filterFakultasJurusanMinGPA(
         fakultas, jurusan, gpa), 200)
@@ -91,7 +91,7 @@ def detailbeasiswa_fakultas_jurusan_gpa(fakultas, jurusan, gpa):
     return resp
 
 # filter by fakultas semester
-@app.route('/detailbeasiswa/fakultas/<fakultas>/semester/<semester>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/semester/<semester>', methods=['GET'])
 def detailbeasiswa_fakultas_semester(fakultas, semester):
     resp = make_response(
         DetailBeasiswa.filterFakultasSemester(fakultas, semester), 200)
@@ -99,7 +99,7 @@ def detailbeasiswa_fakultas_semester(fakultas, semester):
     return resp
 
 # filter by fakultas semester gpa
-@app.route('/detailbeasiswa/fakultas/<fakultas>/semester/<semester>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/semester/<semester>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_fakultas_semester_gpa(fakultas, semester, gpa):
     resp = make_response(DetailBeasiswa.filterFakultasSemesterMinGPA(
         fakultas, semester, gpa), 200)
@@ -107,7 +107,7 @@ def detailbeasiswa_fakultas_semester_gpa(fakultas, semester, gpa):
     return resp
 
 # filter by fakultas gpa
-@app.route('/detailbeasiswa/fakultas/<fakultas>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_fakultas_gpa(fakultas, gpa):
     resp = make_response(
         DetailBeasiswa.filterFakultasMinGPA(fakultas, gpa), 200)
@@ -115,7 +115,7 @@ def detailbeasiswa_fakultas_gpa(fakultas, gpa):
     return resp
 
 # filter all (fakultas,jurusan,semester,gpa)
-@app.route('/detailbeasiswa/fakultas/<fakultas>/jurusan/<jurusan>/semester/<semester>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/fakultas/<fakultas>/jurusan/<jurusan>/semester/<semester>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_fakultas_jurusan_semester_gpa(fakultas, jurusan, semester, gpa):
     resp = make_response(DetailBeasiswa.filterAll(
         fakultas, jurusan, semester, gpa), 200)
@@ -123,14 +123,14 @@ def detailbeasiswa_fakultas_jurusan_semester_gpa(fakultas, jurusan, semester, gp
     return resp
 
 # filter by jurusan
-@app.route('/detailbeasiswa/jurusan/<jurusan>', methods=['GET'])
+@app.route('/beasiswa/jurusan/<jurusan>', methods=['GET'])
 def detailbeasiswa_jurusan(jurusan):
     resp = make_response(DetailBeasiswa.filterJurusan(jurusan), 200)
     resp.mimetype = "application/json"
     return resp
 
 # filter by jurusan semester
-@app.route('/detailbeasiswa/jurusan/<jurusan>/semester/<semester>', methods=['GET'])
+@app.route('/beasiswa/jurusan/<jurusan>/semester/<semester>', methods=['GET'])
 def detailbeasiswa_jurusan_semester(jurusan, semester):
     resp = make_response(
         DetailBeasiswa.filterJurusanSemester(jurusan, semester), 200)
@@ -138,14 +138,14 @@ def detailbeasiswa_jurusan_semester(jurusan, semester):
     return resp
 
 # filter by jurusan gpa
-@app.route('/detailbeasiswa/jurusan/<jurusan>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/jurusan/<jurusan>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_jurusan_gpa(jurusan, gpa):
     resp = make_response(DetailBeasiswa.filterJurusanMinGPA(jurusan, gpa), 200)
     resp.mimetype = "application/json"
     return resp
 
 # filter by jurusan semester gpa
-@app.route('/detailbeasiswa/jurusan/<jurusan>/semester/<semester>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/jurusan/<jurusan>/semester/<semester>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_jurusan_semester_gpa(jurusan, semester, gpa):
     resp = make_response(DetailBeasiswa.filterJurusanSemesterMinGPA(
         jurusan, semester, gpa), 200)
@@ -153,14 +153,14 @@ def detailbeasiswa_jurusan_semester_gpa(jurusan, semester, gpa):
     return resp
 
 # filter by semester
-@app.route('/detailbeasiswa/semester/<semester>', methods=['GET'])
+@app.route('/beasiswa/semester/<semester>', methods=['GET'])
 def detailbeasiswa_semester(semester):
     resp = make_response(DetailBeasiswa.filterSemester(semester), 200)
     resp.mimetype = "application/json"
     return resp
 
 # filter by semester gpa
-@app.route('/detailbeasiswa/semester/<semester>/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/semester/<semester>/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_semester_gpa(semester, gpa):
     resp = make_response(
         DetailBeasiswa.filterSemesterMinGPA(semester, gpa), 200)
@@ -168,7 +168,7 @@ def detailbeasiswa_semester_gpa(semester, gpa):
     return resp
 
 # filter by gpa
-@app.route('/detailbeasiswa/gpa/<gpa>', methods=['GET'])
+@app.route('/beasiswa/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_gpa(gpa):
     resp = make_response(DetailBeasiswa.filterMinGPA(gpa), 200)
     resp.mimetype = "application/json"
