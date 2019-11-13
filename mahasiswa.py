@@ -7,6 +7,9 @@ class Mahasiswa:
     def login():
         return DBManager.readfromLoginMahasiswa()
 
+    def lihatNIM(username):
+        return DBManager.readfromLoginMappingMahasiswa(username)
+
     def lihatSemua():
         return DBManager.readfromMahasiswa()
 
@@ -16,3 +19,5 @@ class Mahasiswa:
     # create function
     def insertDetail(info):
         return DBManager.inserttoMahasiswa(info)
+
+

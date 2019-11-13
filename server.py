@@ -34,6 +34,14 @@ def mahasiswa_nim(nim):
     resp.mimetype = "application/json"
     return resp
 
+# lihat NIM by username
+@app.route('/mahasiswa/map/username/<username>', methods=['GET'])
+def mahasiswa_map(username):
+    resp = make_response(Mahasiswa.lihatNIM(username),200)
+    resp.mimetype = "application/json"
+    return resp
+
+
 # penyedia beasiswa routes
 # login
 @app.route('/penyedia/login', methods=['GET'])
@@ -52,6 +60,13 @@ def penyediabeasiswa():
     # method POST
     elif request.method == 'POST':
         resp = make_response(PenyediaBeasiswa.insertDetail(request.data), 200)
+    resp.mimetype = "application/json"
+    return resp
+
+#lihat ID penyedia by username
+@app.route('/penyedia/map/username/<username>', methods=['GET'])
+def penyedia_map(username):
+    resp = make_response(PenyediaBeasiswa.lihatID(username),200)
     resp.mimetype = "application/json"
     return resp
 

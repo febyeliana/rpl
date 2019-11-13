@@ -7,9 +7,11 @@ class PenyediaBeasiswa:
     def login():
         return DBManager.readfromLoginPenyedia()
     # read all
-
     def lihatSemua():
         return DBManager.readfromPenyedia()
+    #lihat ID penyedia
+    def lihatID(username):
+        return DBManager.readfromLoginMappingPenyedia(username)
     # filter by ID
 
     def filterID(id_penyedia):
