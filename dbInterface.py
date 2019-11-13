@@ -32,8 +32,9 @@ class DBManager:
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromPenyediaByID(id_penyedia):
 		conn = DBManager.connect()
@@ -52,8 +53,9 @@ class DBManager:
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswa():
 		conn = DBManager.connect()
@@ -66,8 +68,9 @@ class DBManager:
 			json_result = json.dumps(dump)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultas(fakultas):
 		conn = DBManager.connect()
@@ -87,8 +90,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultasAndJurusan(fakultas,jurusan):
 		conn = DBManager.connect()
@@ -108,8 +112,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultasAndJurusanAndSemester(fakultas,jurusan,semester):
 		conn = DBManager.connect()
@@ -129,8 +134,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultasAndJurusanAndMinGPA(fakultas,jurusan,gpa):
 		conn = DBManager.connect()
@@ -150,8 +156,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultasAndSemester(fakultas,semester):
 		conn = DBManager.connect()
@@ -171,8 +178,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 	
 	def readfromDetailBeasiswaByFakultasAndSemesterAndMinGPA(fakultas,semester,gpa):
 		conn = DBManager.connect()
@@ -192,8 +200,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByFakultasAndMinGPA(fakultas,gpa):
 		conn = DBManager.connect()
@@ -213,8 +222,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByAllParameters(fakultas,jurusan,semester,gpa):
 		conn = DBManager.connect()
@@ -234,8 +244,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 
 	def readfromDetailBeasiswaByJurusan(jurusan):
@@ -256,8 +267,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaByJurusanAndSemester(jurusan,semester):
 		conn = DBManager.connect()
@@ -277,8 +289,8 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
 
 	def readfromDetailBeasiswaByJurusanAndMinGPA(jurusan,gpa):
 		conn = DBManager.connect()
@@ -298,8 +310,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 	
 	def readfromDetailBeasiswaByJurusanSemesterMinGPA(jurusan,semester,gpa):
 		conn = DBManager.connect()
@@ -319,8 +332,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaBySemester(semester):
 		conn = DBManager.connect()
@@ -340,8 +354,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromDetailBeasiswaBySemesterMinGPA(semester,gpa):
 		conn = DBManager.connect()
@@ -361,8 +376,8 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
 
 	def readfromDetailBeasiswaByMinGPA(gpa):
 		conn = DBManager.connect()
@@ -382,8 +397,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromMahasiswa():
 		conn = DBManager.connect()
@@ -417,8 +433,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromPilihanBeasiswa():
 		conn = DBManager.connect()
@@ -452,8 +469,9 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def readfromPilihanBeasiswaByNIM(nim):
 		conn = DBManager.connect()
@@ -473,8 +491,8 @@ class DBManager:
 			print(error)
 		finally:
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
 
 	#create function
 	def inserttoPenyediaBeasiswa(info):
@@ -493,8 +511,8 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
 
 	def inserttoDetailBeasiswa(info):
 		formatted_info = json.loads(info)
@@ -512,8 +530,9 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def inserttoMahasiswa(info):
 		formatted_info = json.loads(info)
@@ -531,8 +550,9 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	def inserttoPilihanBeasiswa(info):
 		formatted_info = json.loads(info)
@@ -550,8 +570,9 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
+			return json_result
+			
 
 	#update functions
 	def updatetoPilihanBeasiswa(info,id_penyedia,nim):
@@ -570,7 +591,5 @@ class DBManager:
 		finally:
 			json_result = json.dumps(dump)
 			print(json_result)
-			return json_result
 			DBManager.close(conn)
-	
-
+			return json_result
