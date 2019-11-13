@@ -521,6 +521,46 @@ class DBManager:
 			DBManager.close(conn)
 			return json_result
 
+	def readfromLoginMappingMahasiswa(username):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = (""" SELECT nim FROM login_mapping_mahasiswa WHERE username = %(u)s """)
+			values = {'u':username}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Form empty','Username':username}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
+	def readfromLoginMappingPenyedia(username):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = (""" SELECT id_penyedia FROM login_mapping_penyedia WHERE username = %(u)s """)
+			values = {'u':username}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Form empty','Username':username}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
 	#create function
 	def inserttoPenyediaBeasiswa(info):
 		formatted_info = json.loads(info)
