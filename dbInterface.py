@@ -1,6 +1,10 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class DBManager:
 	#connection handler
@@ -9,7 +13,7 @@ class DBManager:
 		conn = None
 		try:
 			#connect using md5 method
-			conn = psycopg2.connect(host="0.0.0.0",database="pbmps",user="postgres",password="postgres")
+			conn = psycopg2.connect(host=os.environ["DB_HOST"],database=os.environ["DB_NAME"],user=os.environ["DB_USER"],password=os.environ["DB_PASS"])
 			print("Connected to database")
 			return conn
 		except(Exception, psycopg2.DatabaseError) as error:
