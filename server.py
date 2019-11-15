@@ -1,10 +1,12 @@
 from flask import Flask, request, make_response
+from flask_cors import CORS   #enable cross domain API request
 from detail_beasiswa import DetailBeasiswa
 from mahasiswa import Mahasiswa
 from penyedia_beasiswa import PenyediaBeasiswa
 from pilihan_beasiswa import PilihanBeasiswa
 
 app = Flask(__name__)
+CORS(app)
 
 # mahasiswa routes
 # login
