@@ -92,6 +92,13 @@ def detailbeasiswa():
     resp.mimetype = "application/json"
     return resp
 
+#filter by ID penyedia (sejarah beasiswa)
+@app.route('/beasiswa/id/<id_penyedia>', methods=['GET'])
+def detailbeasiswa_id(id_penyedia):
+    resp = make_response(DetailBeasiswa.filterID(id_penyedia),200)
+    resp.mimetype = "application/json"
+    return resp
+    
 # filter by fakultas
 @app.route('/beasiswa/fakultas/<fakultas>', methods=['GET'])
 def detailbeasiswa_fakultas(fakultas):
