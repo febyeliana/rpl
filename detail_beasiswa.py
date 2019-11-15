@@ -11,7 +11,8 @@ class DetailBeasiswa:
         date = int(currentYear+currentMonth+currentDay)
         return date
 
-    def checkDate(info):
+    def checkDate(info): 
+    #if waktu_tutup < current date of server, append invalid to json; else append valid
         formatted_info = json.loads(info)
         for i in range(len(formatted_info)):
             if((formatted_info[i]['waktu_tutup']) < DetailBeasiswa.getCurrentDate()):
@@ -20,6 +21,20 @@ class DetailBeasiswa:
                 formatted_info[i]['ketersediaan'] = 'valid'
         return(json.dumps(formatted_info))
 
+    def integertoDateString(num_tgl):
+    #convert integer to date format in string (ex: 12 November 2019)
+        string_tgl = str(num_tgl)
+        date_object = datetime(year=int(string_tgl[0:4]),month=int(string_tgl[4:6]),day=int(string_tgl[6:8]))
+        return (date_object.strftime("%d" + " %B " + "%Y"))
+
+    def convertDate(info):
+    #convert integer in json from integer to date format in string
+        formatted_info = json.loads(info)
+        for i in range(len(formatted_info)):
+            formatted_info[i]['waktu_buka'] = DetailBeasiswa.integertoDateString(formatted_info[i]['waktu_buka'])
+            formatted_info[i]['waktu_tutup'] = DetailBeasiswa.integertoDateString(formatted_info[i]['waktu_tutup'])
+        return (json.dumps(formatted_info))
+
     def checkDictResult(info):
     #check whether json is an error message or not
         for key in json.loads(info)[0]:
@@ -27,6 +42,7 @@ class DetailBeasiswa:
                 break
             elif key == 'id_penyedia':
                 info = DetailBeasiswa.checkDate(info)
+                info = DetailBeasiswa.convertDate(info)
                 break 
         return info
 
@@ -35,7 +51,12 @@ class DetailBeasiswa:
 
     def lihatSemua():
         info = DBManager.readfromDetailBeasiswa()
-        return DetailBeasiswa.checkDate(info)
+        info = DetailBeasiswa.checkDate(info)
+        return (DetailBeasiswa.convertDate(info))
+
+    def filterID(id_penyedia):
+        info = DBManager.readfromDetailBeasiswaByID(id_penyedia)
+        return (DetailBeasiswa.checkDictResult(info))
 
     # filter by fakultas and its combinations
     def filterFakultas(fakultas):
