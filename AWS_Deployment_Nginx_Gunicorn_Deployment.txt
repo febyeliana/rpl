@@ -1,0 +1,57 @@
+git pull
+sudo yum install nginx
+sudo pip3 install virtualenv
+cd back
+virtualenv pbmps-api
+source pbmps-api/bin/activate
+pip3 install -r requirements.txt
+pip3 install gunicorn
+gunicorn --bind 0.0.0.0:4000 wsgi:app # test gunicorn
+deactivate
+vim run-gunicorn.sh
+	#!/usr/bin/bash
+	cd /home/osboxes/RPL/rpl/back/pbmps-api
+	/home/osboxes/RPL/rpl/back/pbmps-api/bin/gunicorn --workers 3 --bind 0.0.0.0:4000 -m 007 wsgi:app
+
+vim /etc/systemd/system/pbmps-api-server.service
+[Unit]
+Description=Gunicorn instance to serve api-server
+After=network.target
+
+[Service]
+#Service to specify the user and group under which our process will run
+User=osboxes
+
+# give group ownership to the www-data group so that Nginx can communicate easily with the Gunicorn processes
+Group=nginx
+
+# specify working directory and env variables
+WorkingDirectory=/home/osboxes/RPL/rpl/back/pbmps-api
+Environment="PATH=/home/osboxes/RPL/rpl/back/pbmps-api/bin"
+
+#command to start the service
+ExecStart=/usr/bin/bash /home/osboxes/RPL/rpl/back/pbmps-api/run-gunicorn.sh
+
+#start the service when regular multi-user system is up and running
+[Install]
+WantedBy=multi-user.target
+
+systemctl start pbmps-api-server.service
+
+vim /etc/nginx/conf.d
+server {
+        listen  0.0.0.0:9000;
+        server_name 192.168.43.206;
+
+        location / {
+                proxy_pass http://0.0.0.0:4000;
+        }
+   }
+
+
+systemctl start nginx
+semanage permissive -a httpd_t
+
+kalo di lokal (Centos 8 VM) -> akses endpoint http://192.168.43.206:4000/<endpoint>
+
+
