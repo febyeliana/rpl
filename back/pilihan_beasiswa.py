@@ -16,8 +16,8 @@ class PilihanBeasiswa:
         return DBManager.readfromPilihanBeasiswaByNIM(nim)
 
     #read by status seleksi
-    def filterStatusSeleksi(status_seleksi):
-        return DBManager.readfromPilihanBeasiswaByStatus(status_seleksi)
+    def filterIDStatusSeleksi(id_penyedia,status_seleksi):
+        return DBManager.readfromPilihanBeasiswaByIDStatus(id_penyedia,status_seleksi)
 
     # create
     def insertDetail(info):

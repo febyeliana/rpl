@@ -243,9 +243,9 @@ def pilihanbeasiswa_nim(nim):
     resp.mimetype = "application/json"
     return resp
 
-@app.route('/pilihanbeasiswa/status/<status_seleksi>', methods=['GET'])
-def pilihanbeasiswa_status(status_seleksi):
-    resp = make_response(PilihanBeasiswa.filterStatusSeleksi(status_seleksi), 200)
+@app.route('/pilihanbeasiswa/id/<id_penyedia>/status/<status_seleksi>', methods=['GET'])
+def pilihanbeasiswa_id_status(id_penyedia,status_seleksi):
+    resp = make_response(PilihanBeasiswa.filterIDStatusSeleksi(id_penyedia,status_seleksi), 200)
     resp.mimetype = "application/json"
     return resp
 

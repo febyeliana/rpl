@@ -517,15 +517,15 @@ class DBManager:
 			DBManager.close(conn)
 			return json_result
 
-	def readfromPilihanBeasiswaByStatus(status_seleksi):
+	def readfromPilihanBeasiswaByIDStatus(id_penyedia,status_seleksi):
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ SELECT * FROM pilihan_beasiswa WHERE status_seleksi = %(n)s """
-			values = {'n':status_seleksi}
+			query = """ SELECT * FROM pilihan_beasiswa WHERE id_penyedia = %(i)s AND status_seleksi = %(n)s """
+			values = {'i':id_penyedia,'n':status_seleksi}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
-				dump = [{'Message':'Invalid Status Type','Status Type':status_seleksi}]
+				dump = [{'Message':'Invalid ID or status_seleksi','ID':id_penyedia,'status_seleksi':status_seleksi}]
 				json_result = json.dumps(dump)
 			else:
 				json_result = json.dumps(cur.fetchall())
