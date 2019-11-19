@@ -516,6 +516,27 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def readfromPilihanBeasiswaByStatus(status_seleksi):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM pilihan_beasiswa WHERE status_seleksi = %(n)s """
+			values = {'n':status_seleksi}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid Status Type','Status Type':status_seleksi}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
 	
 	def readfromLoginMahasiswa():
 		conn = DBManager.connect()

@@ -243,6 +243,11 @@ def pilihanbeasiswa_nim(nim):
     resp.mimetype = "application/json"
     return resp
 
+@app.route('/pilihanbeasiswa/status/<status_seleksi>', methods=['GET'])
+def pilihanbeasiswa_status(status_seleksi):
+    resp = make_response(PilihanBeasiswa.filterStatusSeleksi(status_seleksi), 200)
+    resp.mimetype = "application/json"
+    return resp
 
 @app.route('/pilihanbeasiswa/id/<id_penyedia>/nim/<nim>', methods=['PUT'])
 def pilihanbeasiswa_nim_id(id_penyedia, nim):
@@ -255,4 +260,4 @@ def pilihanbeasiswa_nim_id(id_penyedia, nim):
 if __name__ == '__main__':
     print('Maid cafe running at port 9000')
     # jalankan server
-    app.run(threaded=True, host='0.0.0.0', port=9000)
+    app.run(threaded=True, host='0.0.0.0', port=7000)
