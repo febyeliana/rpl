@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Pemberi Beasiswa</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="script/check_login.js"></script>
+		<script src="script/login.js"></script>
+	</head>
+	<body>
+		<!-- Website top -->
+		<div class="top">Login Penyedia Beasiswa</div>
+
+		<!-- Sign in -->
+		<table class="tPublikasi">
+			<tr>
+				<td>Username</td>
+				<td><input type="text" name="username" id="username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="text" name="password" id="password"></td>
+			</tr>
+		</table>
+		<!-- Button -->
+		<a class="button" href="#" onclick="login()">Masuk</a>
+	</body>
+	<script>
+		window.onload = checkLogin(false);
+	</script>
+</html>

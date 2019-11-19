@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Riwayat Beasiswa</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="script/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</head>
+<body>
+<!-- Website top -->
+		<div class="top">PMBPS Penyedia Beasiswa</div>
+<!-- Menu Bar -->
+		<nav id="navbar">
+			<div class="container">
+				<ul>
+					<li><a href="profil.html">Profil</a></li>
+					<li><a href="publikasi.html">Publikasi</a></li>
+					<li><a href="pendaftar.html">Pendaftar</a></li>
+					<li><a class="now" href="#">Riwayat</a></li>
+				</ul>
+			</div>	
+		</nav>
+		
+		<div id="content">
+<!-- Judul Halaman -->
+			<h1>Riwayat Beasiswa</h1>
+
+		<!-- Table -->
+			<table class="tRiwayat">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Nama Program Beasiswa</th>
+						<th>Tanggal Publikasi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr onclick="toggle(this)">
+						<td>1</td>
+						<td>
+							<div>Beasiswa A</div>
+							<div><button class="detailBeasiswa" type="button">Detail</button></div>
+						</td>
+						<td>1 Januari 2019</td>
+					</tr>
+					<tr class="detail">
+						<td colspan="3">isiiii</td>
+					</tr>
+					<tr onclick="toggle(this)">
+						<td>2</td>
+						<td>
+							<div>Beasiswa B</div>
+							<div><button class="detailBeasiswa" type="button">Detail</button></div>
+						</td>
+						<td>1 Januari 2019</td>
+					</tr>
+					<tr class="detail">
+						<td colspan="3">isiiii</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>
+							<div>Beasiswa B</div>
+							<div><button class="detailBeasiswa" type="button">Detail</button></div>
+						</td>
+						<td>1 Januari 2019</td>
+					</tr>
+					<tr>
+						<td class="isiDetail" colspan="3">isiiii</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$('.isiDetail').hide();
+				$('.detailBeasiswa').on('click',function(){
+					$('.isiDetail').toggle();
+
+				});
+			});
+
+			const toggle = (element) => {
+				console.log(element);
+				console.log('clicked');
+				let detail = element.nextElementSibling;
+				console.log(detail);
+				if (detail.className == "detail") {
+					detail.className = "detail visible";
+				} else {
+					detail.className = "detail";
+				}
+			}
+		</script>
+		<style>
+			.detail {
+				display: none;
+			}
+
+			.detail.visible {
+				display: block;
+			}
+		</style>
+	</body>
+</html>

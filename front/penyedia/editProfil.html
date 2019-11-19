@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Profil Penyedia Beasiswa</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script src="script/profile.js"></script>
+	</head>
+	<body>
+<!-- Website top -->
+		<div class="top">PMBPS Penyedia Beasiswa</div>
+<!-- Menu Bar -->
+		<nav id="navbar">
+			<div class="container">
+				<ul>
+					<li><a class="now" href="#">Profil</a></li>
+					<li ><a  href="publikasi.html">Publikasi</a></li>
+					<li><a href="pendaftar.html">Pendaftar</a></li>
+					<li><a href="riwayat.html">Riwayat</a></li>
+				</ul>
+			</div>	
+		</nav>
+		
+		<div id="content">
+<!-- Judul Halaman -->
+			<h1>Profil Penyedia Beasiswa</h1>
+<!--Tombol-->
+			<div class="buttonProfile">
+				<button class="bSaveOff" onclick="location.href='#'" type="button">Edit</button>
+				<button class="bEditOn" onclick="updateProfile()" type="button">Save</button>
+			</div>
+<!-- Form -->
+			<form>
+				<table class="tRiwayat">
+					<thead>
+						<tr>
+							<th>Atribut</th>
+							<th>Informasi</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Nama</td>
+							<td><input type="text" name="nama_penyedia" placeholder="Nama" id="nama"></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><input type="text" name="email" placeholder="Email" id="email"></td>
+						</tr>
+						<tr>
+							<td>Nomor Telepon</td>
+							<td><input type="text" name="telepon" placeholder="0123456789" id="telepon"></td>
+
+						</tr>
+						<tr>
+							<td>Alamat</td>
+							<td><input type="text" name="nama_program" placeholder="Alamat" id="alamat"></td>
+						</tr>
+						<tr>
+							<td>Website</td>
+							<td><input type="text" name="nama_program" placeholder="Website" id="web"></td>
+
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+<script>
+	window.onload = getProfileById;
+</script>
+</html>
+
+

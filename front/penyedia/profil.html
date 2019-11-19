@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Profil Penyedia Beasiswa</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="script/check_login.js"></script>
+		<script src="script/profile.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+	</head>
+	<body>
+<!-- Website top -->
+		<div class="top">PMBPS Penyedia Beasiswa</div>
+<!-- Menu Bar -->
+		<nav id="navbar">
+			<div class="container">
+				<ul>
+					<li><a class="now" href="#">Profil</a></li>
+					<li ><a  href="publikasi.html">Publikasi</a></li>
+					<li><a href="pendaftar.html">Pendaftar</a></li>
+					<li><a href="riwayat.html">Riwayat</a></li>
+				</ul>
+			</div>	
+		</nav>
+		
+		<div id="content">
+<!-- Judul Halaman -->
+			<h1>Profil Penyedia Beasiswa</h1>
+<!--Tombol-->
+			<div class="buttonProfile">
+				<button class="bEditOn" onclick="location.href='editProfil.html'" type="button">Edit</button>
+				<button class="bSaveOff" onclick="location.href='#'" type="button">Save</button>
+			</div>
+
+<!-- Table -->
+			<table class="tRiwayat">
+				<thead>
+					<tr>
+						<th>Atribut</th>
+						<th>Informasi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Nama</td>
+						<td id="nama">: Nama penyedia beaiswa</td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td id="email">: emailpenyedia@something.com</td>
+					</tr>
+					<tr>
+						<td>Nomor Telepon</td>
+						<td id="telepon">: 1234567890</td>
+					</tr>
+					<tr>
+						<td>Alamat</td>
+						<td id="alamat">: Jalan penyedia no.1 , Bandung</td>
+					</tr>
+					<tr>
+						<td>Website</td>
+						<td id="web">: www.penyedia.com</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</body>
+	<script>
+		window.onload = () => {checkLogin(true); getProfile();}
+	</script>
+</html>
+
+

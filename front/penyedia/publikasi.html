@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Publikasi Beasiswa</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script src="script/check_login.js"></script>
+	</head>
+	<body>
+<!-- Website top -->
+		<div class="top">PMBPS Penyedia Beasiswa</div>
+<!-- Menu Bar -->
+		<nav id="navbar">
+			<div class="container">
+				<ul>
+					<li><a href="profil.html">Profil</a></li>
+					<li><a class="now" href="#">Publikasi</a></li>
+					<li><a href="pendaftar.html">Pendaftar</a></li>
+					<li><a href="riwayat.html">Riwayat</a></li>
+				</ul>
+			</div>	
+		</nav>
+		
+		<div id="content">
+<!-- Judul Halaman -->
+			<h1>Publikasi Beasiswa</h1>
+
+<!-- Forms -->
+			<form action="process.php" method="POST">
+				<h2>Detail Informasi</h2>
+
+				<table class="tPublikasi">
+					<tr>
+						<td>Nama Program Beasiswa</td>
+						<td><input type="text" name="nama_program" placeholder="Cth: Beasiswa Anies"></td>
+					</tr>
+					<tr>
+						<td>Tanggal Buka Pendaftaran</td>
+						<td><input type="date" name="waktu_buka"></td>
+					</tr>
+					<tr>
+						<td>Tanggal Tutup Pendaftaran</td>
+						<td><input type="date" name="waktu_tutup"></td>
+					</tr>
+					<tr>
+						<td>Deskripsi</td>
+						<td><textarea name="deskripsi" rows="7" cols="30" placeholder="Deskripsi beasiswa"></textarea></td>
+					</tr>
+				</table>
+
+			
+				<br>
+
+				<h2>Persyaratan</h2>
+
+				<table class="tPublikasi">
+					<tr>
+						<td>Jenis Beasiswa</td>
+						<td><input type="radio" name="deskripsi"> Maksimal 1</td>
+					</tr>
+					<tr>
+						<td>IPK Minimum</td>
+						<td><input type="number" name="min_gpa" value="0"></td>
+					</tr>
+					<tr>
+						<td>Semester Minimum</td>
+						<td><input type="number" name="min_gpa" value="0"></td>
+					</tr>
+					<tr>
+						<td>Fakultas</td>
+						<td><input type="text" name="fakultas" placeholder="STEI"></td>
+					</tr>
+					<tr>
+						<td>Jurusan</td>
+						<td><input type="text" name="fakultas" placeholder="STI"></td>
+					</tr>
+				</table>
+				
+				<br>
+	<!-- Button -->
+			<a class="button" href="#">Publikasikan</a>
+
+			</form>
+		</div>
+	</body>
+<script>
+	window.onload = checkLogin(true);
+</script>
+</html>
+
+<!-- Detail informasi
+
+	<div>
+				<label>Nama Program Beasiswa:</label>
+				<input type="text" name="nama_program" placeholder="Cth: Beasiswa Anies">
+			</div>
+			<br>
+			<div>
+				<label>Tanggal Buka Pendaftaran:</label>
+				<input type="date" name="waktu_buka">
+			</div>
+			<br>
+			<div>
+				<label>Tanggal Tutup Pendaftaran:</label>
+				<input type="date" name="waktu_tutup">
+			</div>
+			<br>
+			<div>
+				<label>Deskripsi:</label>
+				<textarea name="deskripsi"  placeholder="Deskripsi beasiswa"></textarea>
+			</div>
+-->
+
+<!-- Persyaratan
+	<div>
+				<label>IPK Minimum:</label>
+				<input type="number" name="min_gpa" value="0">
+			</div>
+			<br>
+			<div>
+				<label>Semester Minimum:</label>
+				<input type="number" name="min_gpa" value="0">
+			</div>
+			<br>
+			<div>
+				<label>Fakultas:</label>
+				<input type="text" name="fakultas" placeholder="STEI">
+			</div>
+			<br>
+			<div>
+				<label>Jurusan:</label>
+				<input type="text" name="jurusan" placeholder="STI">
+			</div>
+-->
