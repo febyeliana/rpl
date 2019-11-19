@@ -694,5 +694,24 @@ class DBManager:
 			DBManager.close(conn)
 			return json_result
 
+	def updatePenyediaBeasiswa(info,id_penyedia):
+		formatted_info = json.loads(info)
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE penyedia_beasiswa SET nama = %(n)s, email = %(e)s, no_telepon = %(t)s, alamat = %(a)s, website = %(w)s  WHERE id_penyedia = %(i)s """
+			values = {'n':formatted_info['nama'], 'e':formatted_info['email'], 't':formatted_info['no_telepon'], 'a':formatted_info['alamat'], 'w':formatted_info['website'], 'i':id_penyedia}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			cur.execute(query,values)
+			conn.commit()
+		except(Exception, psycopg2.Error) as error:
+			dump = {'Message': 'Failed to update record to mobile table'}
+			print(error)
+		finally:
+			json_result = json.dumps(dump)
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
 	
 	

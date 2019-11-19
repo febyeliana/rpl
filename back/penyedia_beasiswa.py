@@ -20,3 +20,7 @@ class PenyediaBeasiswa:
     # create
     def insertDetail(info):
         return DBManager.inserttoPenyediaBeasiswa(info)
+
+    # update
+    def updateDetail(info,id_penyedia):
+        return DBManager.updatePenyediaBeasiswa(info,id_penyedia)

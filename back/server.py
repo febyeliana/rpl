@@ -73,9 +73,12 @@ def penyedia_map(username):
     return resp
 
 # filter by ID
-@app.route('/penyedia/id/<id_penyedia>', methods=['GET'])
+@app.route('/penyedia/id/<id_penyedia>', methods=['GET','PUT'])
 def penyediabeasiswa_id(id_penyedia):
-    resp = make_response(PenyediaBeasiswa.filterID(id_penyedia), 200)
+    if request.method == 'GET':
+        resp = make_response(PenyediaBeasiswa.filterID(id_penyedia), 200)
+    elif request.method == 'PUT':
+        resp = make_response(PenyediaBeasiswa.updateDetail(request.data,id_penyedia), 200)
     resp.mimetype = "application/json"
     return resp
 
