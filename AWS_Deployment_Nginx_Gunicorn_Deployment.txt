@@ -10,8 +10,8 @@ gunicorn --bind 0.0.0.0:4000 wsgi:app # test gunicorn
 deactivate
 vim run-gunicorn.sh
 	#!/usr/bin/bash
-	cd /home/osboxes/RPL/rpl/back/pbmps-api
-	/home/osboxes/RPL/rpl/back/pbmps-api/bin/gunicorn --workers 3 --bind 0.0.0.0:4000 -m 007 wsgi:app
+	cd /home/ec2-user/rpl/back/pbmps-api
+	/home/ec2-user/rpl/back/pbmps-api/bin/gunicorn --workers 3 --bind 0.0.0.0:4000 -m 007 wsgi:app
 
 vim /etc/systemd/system/pbmps-api-server.service
 [Unit]
@@ -20,17 +20,17 @@ After=network.target
 
 [Service]
 #Service to specify the user and group under which our process will run
-User=osboxes
+User=ec2-user
 
-# give group ownership to the www-data group so that Nginx can communicate easily with the Gunicorn processes
+# give group ownership to the nginx group so that Nginx can communicate easily with the Gunicorn processes
 Group=nginx
 
 # specify working directory and env variables
-WorkingDirectory=/home/osboxes/RPL/rpl/back/pbmps-api
-Environment="PATH=/home/osboxes/RPL/rpl/back/pbmps-api/bin"
+WorkingDirectory=/home/ec2-user/rpl/back/pbmps-api
+Environment="PATH=/home/ec2-user/rpl/back/pbmps-api/bin"
 
 #command to start the service
-ExecStart=/usr/bin/bash /home/osboxes/RPL/rpl/back/pbmps-api/run-gunicorn.sh
+ExecStart=/usr/bin/bash /home/ec2-user/rpl/back/pbmps-api/run-gunicorn.sh
 
 #start the service when regular multi-user system is up and running
 [Install]
@@ -38,20 +38,23 @@ WantedBy=multi-user.target
 
 systemctl start pbmps-api-server.service
 
-vim /etc/nginx/conf.d
+vim /etc/nginx/nginx.conf
 server {
         listen  0.0.0.0:9000;
-        server_name 192.168.43.206;
+        server_name ec2-3-227-193-57.compute-1.amazonaws.com
+                    3.227.193.57;
 
         location / {
                 proxy_pass http://0.0.0.0:4000;
         }
    }
 
-
-systemctl start nginx
 semanage permissive -a httpd_t
+systemctl start nginx
 
-kalo di lokal (Centos 8 VM) -> akses endpoint http://192.168.43.206:4000/<endpoint>
+
+PS: kalau di lokal (Centos 8 VM) -> akses endpoint http://192.168.43.206:4000/<endpoint>
+
+Written by: Nicholaus Danispadmanaba Y. / 18217028
 
 
