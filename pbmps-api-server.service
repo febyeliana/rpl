@@ -1,0 +1,22 @@
+[Unit]
+Description=Gunicorn instance to serve api-server
+After=network.target
+
+[Service]
+#Service to specify the user and group under which process will run
+User=ec2-user
+
+#give group ownership to nginx group so that Nginx can communnicate easily with the Gunicorn processes
+Group=nginx
+
+#specify working directory and env variables
+WorkingDirectory=/home/ec2-user/rpl/back/pbmps-api
+Environment="PATH=/home/ec2-user/rpl/back/pbmps-api/bin"
+
+#command to start the service
+ExecStart=/usr/bin/bash /home/ec2-user/rpl/back/pbmps-api/run-gunicorn.sh
+
+#start the service when regular multi-user system is up and running
+[Install]
+WantedBy=multi-user.target
+

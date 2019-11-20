@@ -101,6 +101,12 @@ def detailbeasiswa_id(id_penyedia):
     resp = make_response(DetailBeasiswa.filterID(id_penyedia),200)
     resp.mimetype = "application/json"
     return resp
+
+@app.route('/beasiswa/id/<id_penyedia>/aktif/<aktif>', methods = ['GET'])
+def detailbeasiswa_readAktif(id_penyedia,aktif):
+    resp = make_response(DetailBeasiswa.filterAktif(id_penyedia,aktif), 200)
+    resp.mimetype = "application/json"
+    return resp
     
 # filter by fakultas
 @app.route('/beasiswa/fakultas/<fakultas>', methods=['GET'])
@@ -214,6 +220,20 @@ def detailbeasiswa_semester_gpa(semester, gpa):
 @app.route('/beasiswa/gpa/<gpa>', methods=['GET'])
 def detailbeasiswa_gpa(gpa):
     resp = make_response(DetailBeasiswa.filterMinGPA(gpa), 200)
+    resp.mimetype = "application/json"
+    return resp
+
+# update kolom aktif
+@app.route('/beasiswa/aktif/id/<id_penyedia>', methods=['PUT'])
+def detailbeasiswa_aktif(id_penyedia):
+    resp = make_response(DetailBeasiswa.updateAktif(request.data,id_penyedia),200)
+    resp.mimetype = "application/json"
+    return resp
+
+# riwayat dengan jumlah pendaftar
+@app.route('/beasiswa/riwayat/id/<id_penyedia>', methods=['GET'])
+def detailbeasiswa_riwayat(id_penyedia):
+    resp = make_response(DetailBeasiswa.countTidakAktif(id_penyedia),200)
     resp.mimetype = "application/json"
     return resp
 

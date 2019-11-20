@@ -3,6 +3,7 @@ from psycopg2.extras import RealDictCursor
 import json
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 
@@ -423,6 +424,48 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def readfromDetailBeasiswaByAktif(id_penyedia,aktif):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM detail_beasiswa WHERE id_penyedia = %(i)s AND aktif = %(a)s """
+			values = {'i':id_penyedia,'a':aktif}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid aktif status or id_penyedia','ID':id_penyedia,'Aktif':aktif}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
+	def readfromDetailBeasiswaCountTidakAktif(id_penyedia):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT detail_beasiswa.*,jumlah_pendaftar FROM detail_beasiswa INNER JOIN (SELECT nama,id_penyedia,COUNT(nim) AS jumlah_pendaftar FROM pilihan_beasiswa GROUP BY nama,id_penyedia) AS hasil ON detail_beasiswa.id_penyedia = hasil.id_penyedia AND detail_beasiswa.nama = hasil.nama WHERE hasil.id_penyedia = %(i)s AND aktif='No' """
+			values = {'i':id_penyedia}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid id_penyedia or no result','ID':id_penyedia}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
 			
 
 	def readfromMahasiswa():
@@ -500,7 +543,7 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ SELECT * FROM pilihan_beasiswa WHERE nim = %(n)s """
+			query = """ SELECT pilihan_beasiswa.id_penyedia,pilihan_beasiswa.nim,pilihan_beasiswa.status_seleksi,pilihan_beasiswa.waktu_submit,pilihan_beasiswa.nama as nama_beasiswa, penyedia_beasiswa.nama AS nama_penyedia FROM (pilihan_beasiswa INNER JOIN penyedia_beasiswa ON pilihan_beasiswa.id_penyedia = penyedia_beasiswa.id_penyedia INNER JOIN detail_beasiswa ON pilihan_beasiswa.id_penyedia = detail_beasiswa.id_penyedia) WHERE nim = %(n)s """
 			values = {'n':nim}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
@@ -637,8 +680,8 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s)  """
-			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester']}
+			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester, tipe, aktif) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s, %(t)s, %(a)s)  """
+			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester'], 't':formatted_info['tipe'], 'a':'Yes'}
 			dump =[{'Message':'Record successfully inserted to mobile table'}]
 			cur.execute(query,values)
 			conn.commit()
@@ -680,11 +723,40 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO pilihan_beasiswa(id_penyedia, nim, status_seleksi, waktu_submit) VALUES (%(i)s, %(n)s, %(s)s, %(w)s)  """
-			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 's':formatted_info['status_seleksi'], 'w':formatted_info['waktu_submit']}
-			dump =[{'Message':'Record successfully inserted to mobile table'}]
+			# cek detail beasiswa yg di-apply tipe single atau bukan
+			query = """ SELECT * FROM detail_beasiswa WHERE id_penyedia = %(i)s AND nama = %(n)s AND tipe = 'Single' """
+			values = {'i':formatted_info['id_penyedia'],'n':formatted_info['nama_beasiswa']}
 			cur.execute(query,values)
-			conn.commit()
+			if (cur.rowcount != 0): # beasiswa yg di-apply single
+				print('beasiswa yg di-apply single')
+				query = """ SELECT * FROM (pilihan_beasiswa INNER JOIN detail_beasiswa ON pilihan_beasiswa.id_penyedia = detail_beasiswa.id_penyedia AND pilihan_beasiswa.nama = detail_beasiswa.nama) WHERE nim = %(n)s """
+				values = {'n':formatted_info['nim']}
+				cur.execute(query,values)
+				if (cur.rowcount != 0): # sebelumnya sudah pernah apply
+					print('sudah pernah apply')
+					dump = [{'Message':'Already registered to other scholarship. Cannot apply to exclusive scholarship'}]
+				else : #sebelumnya belum pernah apply
+					print('belum pernah apply')
+					query = """ INSERT INTO pilihan_beasiswa(id_penyedia, nim, status_seleksi, waktu_submit, nama) VALUES (%(i)s, %(n)s, %(s)s, %(w)s, %(nama)s)  """
+					values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 's':'Pending', 'w':Date.getCurrentDate(),'nama':formatted_info['nama_beasiswa']}
+					dump =[{'Message':'Record successfully inserted to mobile table'}]
+					cur.execute(query,values)
+					conn.commit()
+			else : #beasiswa yg di-apply multi
+				print('beasiswa yg di-apply multi')
+				query = """ SELECT * FROM (pilihan_beasiswa INNER JOIN detail_beasiswa ON pilihan_beasiswa.id_penyedia = detail_beasiswa.id_penyedia AND pilihan_beasiswa.nama = detail_beasiswa.nama) WHERE nim = %(n)s AND tipe = 'Single' """
+				values = {'n':formatted_info['nim']}
+				cur.execute(query,values)
+				if (cur.rowcount != 0):
+					print('Sudah pernah apply single')
+					dump =[{'Message':'Already registered to exclusive scholarship'}]
+				else:
+					print('Belum pernah apply atau apply multi')
+					query = """ INSERT INTO pilihan_beasiswa(id_penyedia, nim, status_seleksi, waktu_submit, nama) VALUES (%(i)s, %(n)s, %(s)s, %(w)s, %(nama)s)  """
+					values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 's':'Pending', 'w':Date.getCurrentDate(),'nama':formatted_info['nama_beasiswa']}
+					dump =[{'Message':'Record successfully inserted to mobile table'}]
+					cur.execute(query,values)
+					conn.commit()
 		except(Exception, psycopg2.Error) as error:
 			dump = [{'Message': 'Failed to insert record to mobile table'}]
 			print(error)
@@ -701,8 +773,8 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ UPDATE pilihan_beasiswa SET status_seleksi = %(s)s WHERE id_penyedia = %(i)s AND nim = %(n)s """
-			values = {'s':formatted_info['status_seleksi'], 'i':id_penyedia, 'n':nim}
+			query = """ UPDATE pilihan_beasiswa SET status_seleksi = %(s)s WHERE id_penyedia = %(i)s AND nim = %(n)s AND nama = %(nama)s """
+			values = {'s':formatted_info['status_seleksi'], 'i':id_penyedia, 'n':nim, 'nama':formatted_info['nama_beasiswa']}
 			dump =[{'Message':'Record successfully updated to mobile table'}]
 			cur.execute(query,values)
 			conn.commit()
@@ -733,6 +805,33 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def updateAktifDetailBeasiswa(info,id_penyedia):
+		formatted_info = json.loads(info)
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE detail_beasiswa SET aktif = %(a)s WHERE nama = %(n)s AND id_penyedia = %(i)s """
+			values = {'a':formatted_info['aktif'],'n':formatted_info['nama_beasiswa'] ,'i':id_penyedia}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			cur.execute(query,values)
+			conn.commit()
+		except(Exception, psycopg2.Error) as error:
+			dump = {'Message': 'Failed to update record to mobile table'}
+			print(error)
+		finally:
+			json_result = json.dumps(dump)
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
+class Date:
+	def getCurrentDate():
+		currentYear = str(datetime.now().year)
+		currentMonth = str(datetime.now().month)
+		currentDay = str(datetime.now().day)
+		date = int(currentYear+currentMonth+currentDay)
+		return date
 
 	
 	

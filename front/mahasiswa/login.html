@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Mahasiswa</title>
+		<link rel="stylesheet" type="text/css" href="williamstyle.css">
+		<script src="scriptmahasiswa/ceklogin.js"></script>
+		<script src="scriptmahasiswa/login.js"></script>
+	</head>
+	<body>
+		<div class="header">
+	  		PBMPS ITB
+		</div>
+		<div class="top">Login Mahasiswa</div>
+		<table class="tablepersonalinfo">
+			<tr>
+				<td>Username</td>
+				<td><input type="text" name="username" id="username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="text" name="password" id="password"></td>
+			</tr>
+		</table>
+		<!-- Button -->
+		<a class="buttonformmhs" href="#" onclick="login()">Masuk</a>
+	</body>
+	<script>
+		window.onload = checkLogin(false);
+	</script>
+</html>
