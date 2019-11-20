@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type"text/css" href="williamstyle.css">
+	<title>Info Mahasiswa</title>
+	<script src="scriptmahasiswa/ceklogin.js"></script>
+	<script src="scriptmahasiswa/profilmahasiswa.js"></script>
+	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="header">
+	  PBMPS ITB
+	</div>
+
+	<div class="navbar">
+	  <a href="infomahasiswa.html" class="active">Personal Info</a>
+	  <a href="beasiswa.html">Beasiswa</a>
+	  <a href="status.html">Status</a>
+	</div>
+	<div class="main">
+		<h1>Data Diri Mahasiswa</h1>
+		<table class="tabledatadiri">
+		<thead>
+		<tr align="left">
+			<th>Atribut</th>
+			<th>Informasi</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>nim</td>
+				<td id="nim">: nim</td>
+			</tr>
+			<tr>
+				<td>email</td>
+				<td id="email">: email</td>
+			</tr>
+			<tr>
+				<td>password</td>
+				<td id="password">: password</td>
+			</tr>
+			<tr>
+				<td>nama</td>
+				<td id="nama">: nama</td>
+			</tr>
+			<tr>
+				<td>no_telepon</td>
+				<td id="no_telepon">: no_telepon</td>
+			</tr>
+			<tr>
+				<td>usia</td>
+				<td id="usia">: usia</td>
+			</tr>
+			<tr>
+				<td>jurusan</td>
+				<td id="jurusan">: jurusan</td>
+			</tr>
+			<tr>
+				<td>semester</td>
+				<td id="semester">: semester</td>
+			</tr>
+			<tr>
+				<td>gpa</td>
+				<td id="gpa">: gpa</td>
+			</tr>
+			<tr>
+				<td>pendapatan</td>
+				<td id="pendapatan">: pendapatan</td>
+			</tr>
+			<tr>
+				<td>berkas</td>
+				<td id="berkas">: berkas</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
+</body>
+<script>
+	window.onload = () => {checkLogin(true); getProfile();}
+</script>
+</html>
