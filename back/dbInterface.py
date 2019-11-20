@@ -444,6 +444,27 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def readfromDetailBeasiswaCountTidakAktif(id_penyedia):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT detail_beasiswa.*,jumlah_pendaftar FROM detail_beasiswa INNER JOIN (SELECT nama,id_penyedia,COUNT(nim) AS jumlah_pendaftar FROM pilihan_beasiswa GROUP BY nama,id_penyedia) AS hasil ON detail_beasiswa.id_penyedia = hasil.id_penyedia AND detail_beasiswa.nama = hasil.nama WHERE hasil.id_penyedia = %(i)s AND aktif='No' """
+			values = {'i':id_penyedia}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid id_penyedia or no result','ID':id_penyedia}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
 			
 
 	def readfromMahasiswa():

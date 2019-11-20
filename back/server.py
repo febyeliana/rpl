@@ -230,6 +230,13 @@ def detailbeasiswa_aktif(id_penyedia):
     resp.mimetype = "application/json"
     return resp
 
+# riwayat dengan jumlah pendaftar
+@app.route('/beasiswa/riwayat/id/<id_penyedia>', methods=['GET'])
+def detailbeasiswa_riwayat(id_penyedia):
+    resp = make_response(DetailBeasiswa.countTidakAktif(id_penyedia),200)
+    resp.mimetype = "application/json"
+    return resp
+
 # pilihan beasiswa routes
 @app.route('/pilihanbeasiswa', methods=['GET', 'POST'])
 def pilihanbeasiswa():
