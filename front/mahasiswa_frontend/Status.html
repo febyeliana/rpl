@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type"text/css" href="williamstyle.css">
+	<script src="scriptmahasiswa/Status.js"></script>
+	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
+	<title>Status Beasiswa</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="header">
+	  PBMPS ITB
+	</div>
+	<div class="navbar">
+	  <a href="infomahasiswa.html">Personal Info</a>
+	  <a href="beasiswa.html">Beasiswa</a>
+	  <a href="status.html" class="active">Status</a>
+	</div>
+	<div class="main">
+		<h1>Status Beasiswa</h1>
+		<table class="tablestatusbeasiswa">
+			<thead>
+			<tr>
+				<th>No</th>
+				<th>Nama beasiswa</th>
+				<th>Nama penyedia</th>
+				<th>Applied date</th>
+				<th>Status</th>
+			</tr>
+			</thead>
+			<tbody id="statuses">
+				<tr>
+					<td>1</td>
+					<td id="nama_beasiswa"></td>
+					<td id="nama_penyedia"></td>
+					<td id="waktu_submit"></td>
+					<td id="status_seleksi"></td>	
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>
+						
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
+	<script>
+		window.onload= loadData;
+	</script>
+</body>
+</html>
