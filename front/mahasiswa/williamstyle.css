@@ -1,0 +1,165 @@
+body {
+	font-family: Arial
+}
+
+.header {
+	overflow:hidden;
+	padding: 30px;
+	font-size: 30px;
+	text-align: left;
+	background: #86ca9b;
+	color: white;
+}
+.navbar {
+	overflow: hidden;
+	background-color: #F2F2F2;
+}
+
+.navbar a {
+	float: left;
+	color: #5D5D5D;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+	border-radius: 10px;
+}
+
+.navbar a:hover {
+	color: #BEBBBB;
+}
+
+.navbar a.active {
+	background-color: #BEBBBB;
+	color: black;
+	font-weight: bold;
+}
+.main {  
+	margin: 3% 5%;
+}
+input[type=text]{
+	width: 90%;
+  	padding: 12px 20px;
+  	margin: 4px 0;
+  	box-sizing: border-box
+}
+input[type=text] : focus {
+	color : lightblue;
+}
+form{
+	text-align = center;
+}
+.buttonformmhs{
+	background-color: #b5b5b0;
+	color: white;
+	font-size: 14px;
+	padding: 10px 15px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.selection{
+	text-align = center;
+}
+.filter{
+	text-align = center;
+}
+
+.tablepersonalinfo{
+	border-collapse: collapse;
+	font-family:Arial;
+	width:60%;
+	border-radius:10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+	min-width: 500px;
+	margin: 3% 0;
+}
+.tablepersonalinfo tr{
+	border-bottom: 1px solid #ddd;
+}
+.tablepersonalinfo tr:last-of-type{
+	border-bottom:none;
+}
+
+.tablepersonalinfo th{
+	text-align: left;
+	background-color: none;
+}
+
+.tablelistbeasiswa{
+	border-collapse: collapse;
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+	min-width: 600px;
+	margin: 3% 0;
+	overflow:hidden;
+}
+.tablelistbeasiswa thead tr{
+	border-bottom: 1px solid #ddd;
+	background-color: #86ca9b;
+	text-align: left;
+}
+.tablelistbeasiswa th{
+	padding: 12px 15px;
+}
+.tablelistbeasiswa td{
+	padding: 12px 15px;
+}
+.tablestatusbeasiswa{
+	border-collapse: collapse;
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+	min-width: 600px;
+	margin: 3% 0;
+	overflow:hidden;
+}
+.tablestatusbeasiswa th{
+	padding: 12px 15px;
+	background-color: #86ca9b;
+}
+.tablestatusbeasiswa td{
+	padding: 12px 15px;
+}
+
+.tabledetailbeasiswa{
+	border-collapse: collapse;
+	font-family:Arial;
+	width:60%;
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+	min-width: 400px;
+	margin: 3% 0;
+	overflow: hidden;
+}
+.tabledetailbeasiswa thead tr th{
+	background-color: #86ca9b;
+	color: white;
+	border-bottom: 1px solid #ddd
+	border-radius: 10px 10px 0 0;
+}
+.tabledetailbeasiswa th{
+	padding: 12px 15px;
+	background-color: #86ca9b;
+}
+.tabledetailbeasiswa td{
+	padding: 12px 15px;
+}
+.tabledetailbeasiswa tbody tr{
+	border-bottom: 2px solid #87BFBF;
+	color: white;
+}
+.detail{
+	text-align: left;
+}
+	/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 700px) {
+	  .row {   
+	    flex-direction: column;
+	  }
+	}
+
+	/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+	@media screen and (max-width: 400px) {
+	  .navbar a {
+	    float: none;
+	    width: 100%;
+	  }
+	}
