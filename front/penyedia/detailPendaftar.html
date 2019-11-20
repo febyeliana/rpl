@@ -3,7 +3,9 @@
 	<head>
 		<title>Profil Penyedia Beasiswa</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script type="text/javascript" src="script/jquery.js"></script>
+		<script src="script/logout.js"></script>
+		<script src="script/check_login.js"></script>
+		<script src="script/pendaftar.js"></script>
 	</head>
 	<body>
 <!-- Website top -->
@@ -19,6 +21,11 @@
 				</ul>
 			</div>	
 		</nav>
+<!-- Logout Button-->
+		<br>
+		<div id="logout">
+			<a class="button" href="index.html" onclick="logout()">Logout</a>
+		</div>
 		
 		<div id="content">
 			<div><a href="pendaftar.html">Back</a></div>
@@ -35,28 +42,51 @@
 				<tbody>
 					<tr>
 						<td>Nama</td>
-						<td>: Nama pendaftar</td>
+						<td id="nama"></td>
 					</tr>
 					<tr>
-						<td>IPK</td>
-						<td>: IPK Pendaftar</td>
+						<td>NIM</td>
+						<td id="nim"></td>
 					</tr>
 					<tr>
-						<td>Semester</td>
-						<td>: Semester Pendaftar</td>
+						<td>Email</td>
+						<td id="email"></td>
 					</tr>
 					<tr>
-						<td>Fakultas</td>
-						<td>: Fakultas Pendaftar</td>
+						<td>Nomor Telepon</td>
+						<td id="telepon"></td>
+					</tr>
+					<tr>
+						<td>Usia</td>
+						<td id="usia"></td>
 					</tr>
 					<tr>
 						<td>Jurusan</td>
-						<td>: Jurusan Pendaftar</td>
+						<td id="jurusan"></td>
+					</tr>
+					<tr>
+						<td>IPK</td>
+						<td id="ipk"></td>
+					</tr>
+					<tr>
+						<td>Semester</td>
+						<td id="sem"></td>
+					</tr>
+					<tr>
+						<td>Pendapatan</td>
+						<td id="uang"></td>
+					</tr>
+					<tr>
+						<td>Status Berkas</td>
+						<td id="berkas"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</body>
+	<script>
+		window.onload = () => {checkLogin(true); getProfileById();}
+	</script>
 </html>
 
 

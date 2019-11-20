@@ -6,6 +6,9 @@ const login = async () => {
   let data = await response.json();
 
   for (let item of data) {
+    console.log(item);
+    console.log(username);
+    console.log(password);
     if (item.username === username && item.password === password) {
       let urlPart = window.location.href.split('/');
       window.location = urlPart.splice(0, urlPart.length-1).join('/') + '/profil.html';
