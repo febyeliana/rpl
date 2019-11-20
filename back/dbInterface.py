@@ -543,7 +543,7 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ SELECT * FROM pilihan_beasiswa WHERE nim = %(n)s """
+			query = """ SELECT pilihan_beasiswa.id_penyedia,pilihan_beasiswa.nim,pilihan_beasiswa.status_seleksi,pilihan_beasiswa.waktu_submit,pilihan_beasiswa.nama as nama_beasiswa, penyedia_beasiswa.nama AS nama_penyedia FROM (pilihan_beasiswa INNER JOIN penyedia_beasiswa ON pilihan_beasiswa.id_penyedia = penyedia_beasiswa.id_penyedia INNER JOIN detail_beasiswa ON pilihan_beasiswa.id_penyedia = detail_beasiswa.id_penyedia) WHERE nim = %(n)s """
 			values = {'n':nim}
 			cur.execute(query,values)
 			if (cur.rowcount == 0):
