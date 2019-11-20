@@ -637,8 +637,8 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s)  """
-			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester']}
+			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester, tipe) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s, %(t)s)  """
+			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester'], 't':formatted_info['tipe']}
 			dump =[{'Message':'Record successfully inserted to mobile table'}]
 			cur.execute(query,values)
 			conn.commit()
@@ -680,11 +680,20 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO pilihan_beasiswa(id_penyedia, nim, status_seleksi, waktu_submit) VALUES (%(i)s, %(n)s, %(s)s, %(w)s)  """
-			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 's':formatted_info['status_seleksi'], 'w':formatted_info['waktu_submit']}
-			dump =[{'Message':'Record successfully inserted to mobile table'}]
+			# cek apakah mahasiswa sudah mengisi beasiswa yg sifatnya ekslusif
+			query = """ SELECT * from (pilihan_beasiswa INNER JOIN detail_beasiswa ON pilihan_beasiswa.id_penyedia = detail_beasiswa.id_penyedia) WHERE nim = %(n)s AND tipe = 'Single' """
+			values = {'n':formatted_info['nim']}
 			cur.execute(query,values)
-			conn.commit()
+			if (cur.rowcount == 0):
+				checkTipe = DBManager.readfromDetailBeasiswaByID(formatted_info['id_penyedia'])
+				checkTipe_json = json.loads(checkTipe)
+				query = """ INSERT INTO pilihan_beasiswa(id_penyedia, nim, status_seleksi, waktu_submit) VALUES (%(i)s, %(n)s, %(s)s, %(w)s)  """
+				values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nim'], 's':formatted_info['status_seleksi'], 'w':formatted_info['waktu_submit']}
+				dump =[{'Message':'Record successfully inserted to mobile table'}]
+				cur.execute(query,values)
+				conn.commit()
+			else :
+				dump =[{'Message':'Already registered to exclusive scholarship'}]
 		except(Exception, psycopg2.Error) as error:
 			dump = [{'Message': 'Failed to insert record to mobile table'}]
 			print(error)
