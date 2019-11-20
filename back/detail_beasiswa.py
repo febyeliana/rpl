@@ -136,6 +136,10 @@ class DetailBeasiswa:
         info = DBManager.readfromDetailBeasiswaByAktif(id_penyedia,aktif)
         return(DetailBeasiswa.checkDictResult(info))
 
+    def countTidakAktif(id_penyedia):
+        info = DBManager.readfromDetailBeasiswaCountTidakAktif(id_penyedia)
+        return(DetailBeasiswa.checkDictResult(info))
+
 # create
     def insertDetail(info):
         return DBManager.inserttoDetailBeasiswa(info)
