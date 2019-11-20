@@ -98,6 +98,7 @@ class DetailBeasiswa:
             fakultas, jurusan, semester, gpa)
         return(DetailBeasiswa.checkDictResult(info))
 
+
 # filter by jurusan and its combinations
     def filterJurusan(jurusan):
         info = DBManager.readfromDetailBeasiswaByJurusan(jurusan)
@@ -131,6 +132,14 @@ class DetailBeasiswa:
         info = DBManager.readfromDetailBeasiswaByMinGPA(gpa)
         return(DetailBeasiswa.checkDictResult(info))
 
+    def filterAktif(id_penyedia,aktif):
+        info = DBManager.readfromDetailBeasiswaByAktif(id_penyedia,aktif)
+        return(DetailBeasiswa.checkDictResult(info))
+
 # create
     def insertDetail(info):
         return DBManager.inserttoDetailBeasiswa(info)
+
+# update
+    def updateAktif(info,id_penyedia):
+        return DBManager.updateAktifDetailBeasiswa(info,id_penyedia)

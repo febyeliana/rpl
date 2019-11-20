@@ -423,6 +423,27 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def readfromDetailBeasiswaByAktif(id_penyedia,aktif):
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ SELECT * FROM detail_beasiswa WHERE id_penyedia = %(i)s AND aktif = %(a)s """
+			values = {'i':id_penyedia,'a':aktif}
+			cur.execute(query,values)
+			if (cur.rowcount == 0):
+				dump = [{'Message':'Invalid aktif status or id_penyedia','ID':id_penyedia,'Aktif':aktif}]
+				json_result = json.dumps(dump)
+			else:
+				json_result = json.dumps(cur.fetchall())
+		except(Exception, psycopg2.Error) as error:
+			dump = [{'Message': 'Failed to read record from mobile table'}]
+			json_result = json.dumps(dump)
+			print(error)
+		finally:
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
 			
 
 	def readfromMahasiswa():
@@ -637,8 +658,8 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
-			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester, tipe) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s, %(t)s)  """
-			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester'], 't':formatted_info['tipe']}
+			query = """ INSERT INTO detail_beasiswa(id_penyedia, nama, waktu_buka, waktu_tutup, fakultas, jurusan, semester, min_gpa, deskripsi, batas_semester, tipe, aktif) VALUES (%(i)s, %(n)s, %(wb)s, %(wt)s, %(f)s, %(j)s, %(s)s, %(g)s, %(d)s, %(bs)s, %(t)s, %(a)s)  """
+			values = {'i':formatted_info['id_penyedia'], 'n':formatted_info['nama'], 'wb':formatted_info['waktu_buka'], 'wt':formatted_info['waktu_tutup'], 'f':formatted_info['fakultas'], 'j':formatted_info['jurusan'], 's':formatted_info['semester'], 'g':formatted_info['min_gpa'], 'd':formatted_info['deskripsi'], 'bs':formatted_info['batas_semester'], 't':formatted_info['tipe'], 'a':'Yes'}
 			dump =[{'Message':'Record successfully inserted to mobile table'}]
 			cur.execute(query,values)
 			conn.commit()
@@ -731,6 +752,25 @@ class DBManager:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
 			query = """ UPDATE penyedia_beasiswa SET nama = %(n)s, email = %(e)s, no_telepon = %(t)s, alamat = %(a)s, website = %(w)s  WHERE id_penyedia = %(i)s """
 			values = {'n':formatted_info['nama'], 'e':formatted_info['email'], 't':formatted_info['no_telepon'], 'a':formatted_info['alamat'], 'w':formatted_info['website'], 'i':id_penyedia}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			cur.execute(query,values)
+			conn.commit()
+		except(Exception, psycopg2.Error) as error:
+			dump = {'Message': 'Failed to update record to mobile table'}
+			print(error)
+		finally:
+			json_result = json.dumps(dump)
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
+	def updateAktifDetailBeasiswa(info,id_penyedia):
+		formatted_info = json.loads(info)
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE detail_beasiswa SET aktif = %(a)s WHERE nama = %(n)s AND id_penyedia = %(i)s """
+			values = {'a':formatted_info['aktif'],'n':formatted_info['nama_beasiswa'] ,'i':id_penyedia}
 			dump =[{'Message':'Record successfully updated to mobile table'}]
 			cur.execute(query,values)
 			conn.commit()
