@@ -4,6 +4,8 @@
 		<title>Publikasi Beasiswa</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script type="text/javascript" src="script/jquery.js"></script>
+		<script src="script/logout.js"></script>
+		<script src="script/publikasi.js"></script>
 		<script src="script/check_login.js"></script>
 	</head>
 	<body>
@@ -20,7 +22,12 @@
 				</ul>
 			</div>	
 		</nav>
-		
+<!-- Logout Button-->
+		<br>
+		<div id="logout">
+			<a class="button" href="index.html" onclick="logout()">Logout</a>
+		</div>
+
 		<div id="content">
 <!-- Judul Halaman -->
 			<h1>Publikasi Beasiswa</h1>
@@ -32,19 +39,19 @@
 				<table class="tPublikasi">
 					<tr>
 						<td>Nama Program Beasiswa</td>
-						<td><input type="text" name="nama_program" placeholder="Cth: Beasiswa Anies"></td>
+						<td><input type="text" name="nama_program" id="nama" placeholder="Cth: Beasiswa Anies"></td>
 					</tr>
 					<tr>
 						<td>Tanggal Buka Pendaftaran</td>
-						<td><input type="date" name="waktu_buka"></td>
+						<td><input type="number" name="waktu_buka" id="waktu_buka" placeholder="TahunBulanTanggal (20191231)"></td>
 					</tr>
 					<tr>
 						<td>Tanggal Tutup Pendaftaran</td>
-						<td><input type="date" name="waktu_tutup"></td>
+						<td><input type="number" name="waktu_tutup" id="waktu_tutup" placeholder="TahunBulanTanggal (20191231)"></td>
 					</tr>
 					<tr>
 						<td>Deskripsi</td>
-						<td><textarea name="deskripsi" rows="7" cols="30" placeholder="Deskripsi beasiswa"></textarea></td>
+						<td><textarea name="deskripsi" id="deskripsi" rows="7" cols="30" placeholder="Deskripsi beasiswa"></textarea></td>
 					</tr>
 				</table>
 
@@ -55,30 +62,34 @@
 
 				<table class="tPublikasi">
 					<tr>
-						<td>Jenis Beasiswa</td>
-						<td><input type="radio" name="deskripsi"> Maksimal 1</td>
-					</tr>
-					<tr>
 						<td>IPK Minimum</td>
-						<td><input type="number" name="min_gpa" value="0"></td>
+						<td><input type="number" name="min_gpa" id="min_gpa" value="0"></td>
 					</tr>
 					<tr>
 						<td>Semester Minimum</td>
-						<td><input type="number" name="min_gpa" value="0"></td>
+						<td><input type="number" name="min_sem" id="min_sem" value="0"></td>
+					</tr>
+					<tr>
+						<td>Semester Maksimum</td>
+						<td><input type="number" name="max_sem" id="max_sem" value="0"></td>
 					</tr>
 					<tr>
 						<td>Fakultas</td>
-						<td><input type="text" name="fakultas" placeholder="STEI"></td>
+						<td><input type="text" name="fakultas" id="fakultas" placeholder="STEI"></td>
 					</tr>
 					<tr>
 						<td>Jurusan</td>
-						<td><input type="text" name="fakultas" placeholder="STI"></td>
+						<td><input type="text" name="jurusan" id="jurusan" placeholder="STI"></td>
+					</tr>
+					<tr>
+						<td>Tipe Beasiswa</td>
+						<td><input type="text" name="tipe" id="tipe" placeholder="Single/Multi"></td>
 					</tr>
 				</table>
 				
 				<br>
 	<!-- Button -->
-			<a class="button" href="#">Publikasikan</a>
+			<a class="button" href="#" onclick="publikasi()">Publikasikan</a>
 
 			</form>
 		</div>
@@ -87,48 +98,3 @@
 	window.onload = checkLogin(true);
 </script>
 </html>
-
-<!-- Detail informasi
-
-	<div>
-				<label>Nama Program Beasiswa:</label>
-				<input type="text" name="nama_program" placeholder="Cth: Beasiswa Anies">
-			</div>
-			<br>
-			<div>
-				<label>Tanggal Buka Pendaftaran:</label>
-				<input type="date" name="waktu_buka">
-			</div>
-			<br>
-			<div>
-				<label>Tanggal Tutup Pendaftaran:</label>
-				<input type="date" name="waktu_tutup">
-			</div>
-			<br>
-			<div>
-				<label>Deskripsi:</label>
-				<textarea name="deskripsi"  placeholder="Deskripsi beasiswa"></textarea>
-			</div>
--->
-
-<!-- Persyaratan
-	<div>
-				<label>IPK Minimum:</label>
-				<input type="number" name="min_gpa" value="0">
-			</div>
-			<br>
-			<div>
-				<label>Semester Minimum:</label>
-				<input type="number" name="min_gpa" value="0">
-			</div>
-			<br>
-			<div>
-				<label>Fakultas:</label>
-				<input type="text" name="fakultas" placeholder="STEI">
-			</div>
-			<br>
-			<div>
-				<label>Jurusan:</label>
-				<input type="text" name="jurusan" placeholder="STI">
-			</div>
--->

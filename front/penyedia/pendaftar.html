@@ -4,7 +4,7 @@
 	<title>Riwayat Beasiswa</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="script/pendaftar.js"></script>
-	<script type="text/javascript" src="script/jquery.js"></script>
+	<script src="script/logout.js"></script>
 </head>
 <body>
 <!-- Website top -->
@@ -20,40 +20,19 @@
 			</ul>
 		</div>	
 	</nav>
-	
+<!-- Logout Button-->
+		<br>
+		<div id="logout">
+			<a class="button" href="index.html" onclick="logout()">Logout</a>
+		</div>
+
 	<div id="content">
 <!-- Judul Halaman -->
 		<h1>Pendaftar Beasiswa</h1>
 <!--form-->
-		 <form action="process.php" method="POST">
 <!-- Table -->
-			<table class="tRiwayat">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Nama Pendaftar</th>
-						<th>Terima</th>
-					</tr>
-				</thead>
-				<tbody id="table-body">
-					<tr>
-						<td>1</td>
-						<td>
-							<a class="link" href="detailPendaftar.html">Anto</a>
-						</td>
-						<td><input type="checkbox" name="terima" Value="Terima"></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>
-							<a class="link" href="detailPendaftar.html">AntoAntoAntoAntoA</a>
-						</td>
-						<td><input type="checkbox" name="terima" Value="Terima"></td>
-					</tr>
-				</tbody>
-			</table>
-			<a class="button" href="#" onclick="acceptPendaftar()">Publikasikan</a>
-		</form>		
+		<div id="table-content"></div>
+
 	</div>
 	<script>
 		window.onload = loadData;

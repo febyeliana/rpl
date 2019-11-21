@@ -4,7 +4,9 @@
 	<title>Riwayat Beasiswa</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="script/jquery.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script src="script/logout.js"></script>
+	<script src="script/check_login.js"></script>
+	<script src="script/riwayat.js"></script>
 </head>
 <body>
 <!-- Website top -->
@@ -20,7 +22,12 @@
 				</ul>
 			</div>	
 		</nav>
-		
+<!-- Logout Button-->
+		<br>
+		<div id="logout">
+			<a class="button" href="index.html" onclick="logout()">Logout</a>
+		</div>
+
 		<div id="content">
 <!-- Judul Halaman -->
 			<h1>Riwayat Beasiswa</h1>
@@ -32,9 +39,12 @@
 						<th>No.</th>
 						<th>Nama Program Beasiswa</th>
 						<th>Tanggal Publikasi</th>
+						<th>Jumlah Pendaftar</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="table-body">
+
+					<!-- TOOGLE TOOGLE
 					<tr onclick="toggle(this)">
 						<td>1</td>
 						<td>
@@ -57,21 +67,15 @@
 					<tr class="detail">
 						<td colspan="3">isiiii</td>
 					</tr>
-					<tr>
-						<td>3</td>
-						<td>
-							<div>Beasiswa B</div>
-							<div><button class="detailBeasiswa" type="button">Detail</button></div>
-						</td>
-						<td>1 Januari 2019</td>
-					</tr>
-					<tr>
-						<td class="isiDetail" colspan="3">isiiii</td>
-					</tr>
+					-->
 				</tbody>
 			</table>
 		</div>
 		<script>
+			window.onload = checkLogin(true);
+			window.onload = loadData;
+
+			/* ------TOOGLE-------
 			$(document).ready(function(){
 				$('.isiDetail').hide();
 				$('.detailBeasiswa').on('click',function(){
@@ -80,6 +84,7 @@
 				});
 			});
 
+			
 			const toggle = (element) => {
 				console.log(element);
 				console.log('clicked');
@@ -91,6 +96,7 @@
 					detail.className = "detail";
 				}
 			}
+			*/
 		</script>
 		<style>
 			.detail {
