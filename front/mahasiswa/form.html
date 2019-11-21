@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" type"text/css" href="williamstyle.css">
-
+<script src="scriptmahasiswa/formmahasiswa.js"></script>
+<script src ="scriptmahasiswa/login.js"></script>
+<script src="scriptmahasiswa/profilmahasiswa.js"></script>
+<script src="scriptmahasiswa/ceklogin.js"></script>
 <title>Informasi data diri</title>
 </style>
 </head>
@@ -10,14 +13,9 @@
 	<div class="header">
 	  PBMPS ITB
 	</div>
-	<div class="navbar">
-	  <a href="info.html" class="active">Personal Info</a>
-	  <a href="beasiswa.html">Beasiswa</a>
-	  <a href="status.html">Status</a>
-	</div>
 	<div class="main">
 	<h1>Form Data Mahasiswa</h1>
-	<form enctype ="application/json" width=60% id="postForm" method="POST" action="http://3.227.193.57:9000/mahasiswa">
+	<form  width=60%  method="POST">
 		<table class="tablepersonalinfo">
 			<tr>
 				<th>nim</th>			
@@ -62,13 +60,12 @@
 				<th>berkas</th>	
 				<th><input name="berkas" type="text" id="berkas"></th>
 			</tr>
-			<tr>
-				<th>username</th>
-				<th><input name="username" type="text" id="username"></th>
-			</tr>
 		</table><br>
-		<input class="buttonformmhs" type="submit" value ="Save">
+		<a class="buttonformmhs" href="#" onclick="inputForm()">Submit</a>
 		<input class="buttonformmhs" type="reset" value="Clear">
 		</form>
 </body>
+<script>
+	window.onload = cekLogin(true);
+</script>
 </html>

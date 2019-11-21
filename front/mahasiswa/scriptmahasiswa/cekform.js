@@ -1,4 +1,4 @@
-const cekLogin =  (isLoggedIn) => {
+const checkLogin =  (isLoggedIn) => {
   return async () => {
     let username = localStorage.getItem('username');
     let password = localStorage.getItem('password');

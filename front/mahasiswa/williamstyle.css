@@ -42,6 +42,12 @@ input[type=text]{
   	margin: 4px 0;
   	box-sizing: border-box
 }
+input[type=password]{
+	width: 90%;
+  	padding: 12px 20px;
+  	margin: 4px 0;
+  	box-sizing: border-box
+}
 input[type=text] : focus {
 	color : lightblue;
 }

@@ -8,42 +8,42 @@ const getProfile = async () => {
     let nims = item.nim;
     console.log(nims);
 
-  let result2 = await fetch('http://3.227.193.57:9000/mahasiswa/nim/' +nims);
-  let data = await result2.json();
+    let result2 = await fetch('http://3.227.193.57:9000/mahasiswa/nim/' +nims);
+    let data = await result2.json();
 
  
-  for (let item of data) {
-    console.log(item.nim);
-    if (item.nim == nims) {
-      let nimElem = $('nim');
-      let emailElem = $('email');
-      let passwordElem = $('password');
-      let namaElem = $('nama');
-      let no_teleponElem = $('no_telepon');
-      let usiaElem = $('usia');
-      let jurusanElem = $('jurusan');
-      let semesterElem = $('semester');
-      let gpaElem = $('gpa');
-      let pendapatanElem = $('pendapatan');
-      let berkasElem = $('berkas');
+    for (let item of data) {
+      console.log(item.nim);
+      if (item.nim == nims) {
+        let nimElem = $('nim');
+        let emailElem = $('email');
+        let passwordElem = $('password');
+        let namaElem = $('nama');
+        let no_teleponElem = $('no_telepon');
+        let usiaElem = $('usia');
+        let jurusanElem = $('jurusan');
+        let semesterElem = $('semester');
+        let gpaElem = $('gpa');
+        let pendapatanElem = $('pendapatan');
+        let berkasElem = $('berkas');
 
-      nimElem.innerText = item.nim;
-      emailElem.innerText = item.email;
-      passwordElem.innerText = item.password;
-      namaElem.innerText = item.nama;
-      no_teleponElem.innerText = item.no_telepon;
-      usiaElem.innerText = item.usia;
-      jurusanElem.innerText = item.jurusan;
-      semesterElem.innerText = item.semester;
-      gpaElem.innerText = item.gpa;
-      pendapatanElem.innerText = item.pendapatan;
-      berkasElem.innerText = item.berkas;
-      window.localStorage.nim = item.nim;
-    
-      return;
+        nimElem.innerText = item.nim;
+        emailElem.innerText = item.email;
+        passwordElem.innerText = item.password;
+        namaElem.innerText = item.nama;
+        no_teleponElem.innerText = item.no_telepon;
+        usiaElem.innerText = item.usia;
+        jurusanElem.innerText = item.jurusan;
+        semesterElem.innerText = item.semester;
+        gpaElem.innerText = item.gpa;
+        pendapatanElem.innerText = item.pendapatan;
+        berkasElem.innerText = item.berkas;
+        window.localStorage.nim = item.nim;
+      
+        return;
+      }
     }
   }
-}
 };
 
 const getProfileByNim = async () => {
