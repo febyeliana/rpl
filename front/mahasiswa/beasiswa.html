@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type"text/css" href="williamstyle.css">
-	<script src="scriptmahasiswa/Beasiswa.js"></script>
+	<script src="scriptmahasiswa/beasiswa.js"></script>
 	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
+	<script src="scriptmahasiswa/ceklogin.js"></script>
 	<title>List Beasiswa</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,7 +83,7 @@
 	        		}
 	     	 	}
     		}
-		window.onload = loadData;
+    	window.onload = () => {cekLogin(true); loadData();}
 	</script>
 	<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 </body>

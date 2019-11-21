@@ -12,7 +12,7 @@ body {
 }
 .navbar {
 	overflow: hidden;
-	background-color: #F2F2F2;
+	background-color: #E5F0E6;
 }
 
 .navbar a {
@@ -36,7 +36,20 @@ body {
 .main {  
 	margin: 3% 5%;
 }
+
+.tampilanlogin{
+	margin: auto;
+	padding: 10px;
+	width: 50%;
+	text-align: center;
+}
 input[type=text]{
+	width: 90%;
+  	padding: 12px 20px;
+  	margin: 4px 0;
+  	box-sizing: border-box
+}
+input[type=password]{
 	width: 90%;
   	padding: 12px 20px;
   	margin: 4px 0;
@@ -79,8 +92,22 @@ form{
 .tablepersonalinfo tr:last-of-type{
 	border-bottom:none;
 }
-
-.tablepersonalinfo th{
+.tablelogin{
+	border-collapse: collapse;
+	font-family:Arial;
+	width:60%;
+	border-radius:10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.15);
+	min-width: 670px;
+	margin: 3% 0;
+}
+.tablelogin tr{
+	border-bottom: 1px solid #ddd;
+}
+.tablelogin tr:last-of-type{
+	border-bottom:none;
+}
+.tablelogin th{
 	text-align: left;
 	background-color: none;
 }
@@ -186,17 +213,3 @@ form{
 	min-width: 500px;
 	margin: 3% 0;
 }
-	/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-	@media screen and (max-width: 700px) {
-	  .row {   
-	    flex-direction: column;
-	  }
-	}
-
-	/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-	@media screen and (max-width: 400px) {
-	  .navbar a {
-	    float: none;
-	    width: 100%;
-	  }
-	}

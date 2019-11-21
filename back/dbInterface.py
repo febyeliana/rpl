@@ -45,6 +45,12 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE detail_beasiswa SET aktif = 'No' WHERE waktu_tutup <= %(date)s  """
+			values = {'date':Date.getCurrentDate()}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			print(dump)
+			cur.execute(query,values)
+			conn.commit()
 			query = """ SELECT * FROM penyedia_beasiswa WHERE id_penyedia = %(id)s """
 			values = {'id':id_penyedia}
 			cur.execute(query,values)
@@ -824,6 +830,26 @@ class DBManager:
 			print(json_result)
 			DBManager.close(conn)
 			return json_result
+
+	def updateDetailMahasiswa(info,nim):
+		formatted_info = json.loads(info)
+		conn = DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE mahasiswa SET email = %(e)s, nama = %(nama)s, no_telepon = %(t)s, usia = %(u)s, jurusan = %(j)s, semester = %(s)s, gpa = %(g)s, pendapatan = %(p)s, berkas = %(b)s WHERE nim = %(nim)s """
+			values = {'e':formatted_info['email'],'nama':formatted_info['nama'], 't':formatted_info['no_telepon'],'u':formatted_info['usia'],'j':formatted_info['jurusan'],'s':formatted_info['semester'],'g':formatted_info['gpa'],'p':formatted_info['pendapatan'],'b':formatted_info['berkas'], 'nim':nim}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			cur.execute(query,values)
+			conn.commit()
+		except(Exception, psycopg2.Error) as error:
+			dump = {'Message': 'Failed to update record to mobile table'}
+			print(error)
+		finally:
+			json_result = json.dumps(dump)
+			print(json_result)
+			DBManager.close(conn)
+			return json_result
+
 
 class Date:
 	def getCurrentDate():

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type"text/css" href="williamstyle.css">
-	<script src="scriptmahasiswa/Status.js"></script>
+	<script src="scriptmahasiswa/status.js"></script>
 	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
+	<script src="scriptmahasiswa/ceklogin.js"></script>
 	<title>Status Beasiswa</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,10 +47,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	</div>
-	<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	<script>
-		window.onload= loadData;
+		window.onload = () => {cekLogin(true); loadData();}
 	</script>
 </body>
 </html>
