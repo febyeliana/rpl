@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type"text/css" href="williamstyle.css">
-	<script src="scriptmahasiswa/Status.js"></script>
+	<script src="scriptmahasiswa/status.js"></script>
 	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
 	<script src="scriptmahasiswa/ceklogin.js"></script>
 	<title>Status Beasiswa</title>
@@ -47,8 +47,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	</div>
-	<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	<script>
 		window.onload = () => {cekLogin(true); loadData();}
 	</script>
