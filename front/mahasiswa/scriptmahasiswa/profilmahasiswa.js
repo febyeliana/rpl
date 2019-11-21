@@ -53,21 +53,42 @@ const getProfileByNim = async () => {
   let item = json[0];
 
   let nimElem = $('nim');
-  let namaElem = $('nama');
   let emailElem = $('email');
+  let passwordElem = $('password');
+  let namaElem = $('nama');
+  let no_teleponElem = $('no_telepon');
   let usiaElem = $('usia');
+  let jurusanElem = $('jurusan');
+  let semesterElem = $('semester');
+  let gpaElem = $('gpa');
+  let pendapatanElem = $('pendapatan');
+  let berkasElem = $('berkas');
 
   nimElem.value = item.nim;
-  namaElem.value = item.nama;
   emailElem.value = item.email;
+  passwordElem.value = item.password;
+  namaElem.value = item.nama;
+  no_teleponElem.value = item.no_telepon;
   usiaElem.value = item.usia;
+  jurusanElem.value = item.jurusan;
+  semesterElem.value = item.semester;
+  gpaElem.value = item.gpa;
+  pendapatanElem.value = item.pendapatan;
+  berkasElem.value = item.berkas;
 };
 
 const updateProfile = async () => {
-  let namaElem = $('nama');
   let nimElem = $('nim');
   let emailElem = $('email');
+  let passwordElem = $('password');
+  let namaElem = $('nama');
+  let no_teleponElem = $('no_telepon');
   let usiaElem = $('usia');
+  let jurusanElem = $('jurusan');
+  let semesterElem = $('semester');
+  let gpaElem = $('gpa');
+  let pendapatanElem = $('pendapatan');
+  let berkasElem = $('berkas');
   let nim = window.localStorage.getItem('nim');
   await fetch(`http://3.227.193.57:9000/mahasiswa/nim/${nim}`, {
     method: 'PUT',
@@ -76,9 +97,17 @@ const updateProfile = async () => {
     },
     body: JSON.stringify({
       "nama": namaElem.value,
+      "nim": nimElem.value, 
+      "email": emailElem.value,
+      "password": passwordElem.value, 
       "nama": namaElem.value, 
-      "email": email.value, 
-      "usia":usia.value
+      "no_telepon": no_teleponElem.value, 
+      "usia": parseInt(usiaElem.value),
+      "jurusan": jurusanElem.value, 
+      "semester": semesterElem.value,
+      "gpa": parseFloat(gpaElem.value), 
+      "pendapatan": parseInt(pendapatanElem.value),
+      "berkas": berkasElem.value,
   })
   })
   let urlPart = window.location.href.split('/');
