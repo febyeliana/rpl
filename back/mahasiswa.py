@@ -20,4 +20,8 @@ class Mahasiswa:
     def insertDetail(info):
         return DBManager.inserttoMahasiswa(info)
 
+    #update function
+    def updateDetail(info,nim):
+        return DBManager.updateDetailMahasiswa(info,nim)
+
 

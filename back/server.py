@@ -30,9 +30,12 @@ def mahasiswa():
     return resp
 
 # filter by NIM
-@app.route('/mahasiswa/nim/<nim>', methods=['GET'])
+@app.route('/mahasiswa/nim/<nim>', methods=['GET','PUT'])
 def mahasiswa_nim(nim):
-    resp = make_response(Mahasiswa.filterNIM(nim), 200)
+    if request.method == 'GET':
+        resp = make_response(Mahasiswa.filterNIM(nim), 200)
+    elif request.method == 'PUT':
+        resp = make_response(Mahasiswa.updateDetail(request.data,nim),200)
     resp.mimetype = "application/json"
     return resp
 
