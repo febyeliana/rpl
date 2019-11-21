@@ -45,6 +45,12 @@ class DBManager:
 		conn = DBManager.connect()
 		try:
 			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE detail_beasiswa SET aktif = 'No' WHERE waktu_tutup <= %(date)s  """
+			values = {'date':Date.getCurrentDate()}
+			dump =[{'Message':'Record successfully updated to mobile table'}]
+			print(dump)
+			cur.execute(query,values)
+			conn.commit()
 			query = """ SELECT * FROM penyedia_beasiswa WHERE id_penyedia = %(id)s """
 			values = {'id':id_penyedia}
 			cur.execute(query,values)
