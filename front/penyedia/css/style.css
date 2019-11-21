@@ -62,11 +62,25 @@ body{
 	text-decoration: none;
 }
 
-
 .button:hover{
 	background-color:#5D5D5D;
 	color:#fff;
 }
+
+.button_logout{
+	background-color:#5D5D5D;
+	color:#fff;
+	padding:10px 15px;
+	border-radius: 10px;
+	text-decoration: none;
+	float: right;
+}
+
+.button_logout:hover{
+	background-color:#5D5D5D;
+	color:#fff;
+}
+
 .buttonProfile{
 	position: absolute;
 	right: 10%;
@@ -168,4 +182,8 @@ a.link:hover{
 }
 .np{
 	float: left;
+}
+.name:hover{
+	cursor: pointer;
+	color: #87BFBF;
 }

@@ -23,7 +23,7 @@
 <!-- Logout Button-->
 		<br>
 		<div id="logout">
-			<a class="button" href="index.html" onclick="logout()">Logout</a>
+			<a class="button_logout" href="index.html" onclick="logout()">Logout</a>
 		</div>
 
 		<div id="content">
@@ -32,7 +32,7 @@
 <!--Tombol-->
 			<div class="buttonProfile">
 				<button class="bSaveOff" onclick="location.href='#'" type="button">Edit</button>
-				<button class="bEditOn" onclick="location.href='profil.html'" type="button">Save</button>
+				<button class="bEditOn" onclick="updateProfile()" type="button">Save</button>
 			</div>
 
 <!-- Form -->
@@ -74,7 +74,6 @@
 	</body>
 <script>
 	window.onload = getProfileById;
-	window.onload = checkLogin(true);
 </script>
 </html>
 

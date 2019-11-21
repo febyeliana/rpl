@@ -21,17 +21,20 @@ let id = window.localStorage.getItem('id');
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({"id_penyedia": parseInt(id), 
-		"nama": document.getElementById('nama').innerText,
-	  	"waktu_buka": parseInt(bukaElem.innerText), 
-	  	"waktu_tutup": parseInt(tutupElem.innerText), 
-	  	"deskripsi": deskripsiElem.innerText, 
-	  	"min_gpa": parseFloat(minElem.innerText),
-	  	"semester": parseInt(minSemElem.innerText), 
-	  	"batas_semester": parseInt(document.getElementById('max_sem').innerText),
-	  	"fakultas": fakultasElem.innerText, 
-	  	"jurusan": jurusanElem.innerText,
-	  	"tipe": tipeElem.innerText
+		"nama": document.getElementById('nama').value,
+	  	"waktu_buka": parseInt(bukaElem.value), 
+	  	"waktu_tutup": parseInt(tutupElem.value), 
+	  	"deskripsi": deskripsiElem.value, 
+	  	"min_gpa": parseFloat(minElem.value),
+	  	"semester": parseInt(minSemElem.value), 
+	  	"batas_semester": parseInt(document.getElementById('max_sem').value),
+	  	"fakultas": fakultasElem.value, 
+	  	"jurusan": jurusanElem.value,
+	  	"tipe": tipeElem.value
 	  })
 
   })
+
+let urlPart = window.location.href.split('/');
+window.location = urlPart.splice(0, urlPart.length-1).join('/') + '/publikasi.html';
 }

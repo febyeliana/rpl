@@ -46,11 +46,11 @@ const getProfileById = async () => {
   let teleponElem = $('telepon');
   let webElem = $('web');
 
-  namaElem.innerText = item.nama;
-  emailElem.innerText = item.email;
-  teleponElem.innerText = item.no_telepon;
-  alamatElem.innerText = item.alamat;
-  webElem.innerText = item.website;
+  namaElem.value = item.nama;
+  emailElem.value = item.email;
+  teleponElem.value = item.no_telepon;
+  alamatElem.value = item.alamat;
+  webElem.value = item.website;
 };
 
 const updateProfile = async () => {
@@ -66,11 +66,11 @@ let id = window.localStorage.getItem('id');
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({"nama": namaElem.innerText,
-      "email": emailElem.innerText, 
-      "no_telepon": teleponElem.innerText, 
-      "alamat":alamatElem.innerText, 
-      "website": webElem.innerText})
+    body: JSON.stringify({"nama": namaElem.value,
+      "email": emailElem.value, 
+      "no_telepon": teleponElem.value, 
+      "alamat":alamatElem.value, 
+      "website": webElem.value})
   })
   let urlPart = window.location.href.split('/');
       window.location = urlPart.splice(0, urlPart.length-1).join('/') + '/profil.html';

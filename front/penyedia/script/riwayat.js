@@ -1,4 +1,4 @@
-const createRow = (i, name, date, total) => {
+const createRow = (i, name, startDate, closeDate, total) => {
   let nameCell = document.createElement('td');
   nameCell.innerText = name;
   nameCell.className = "name";
@@ -6,9 +6,13 @@ const createRow = (i, name, date, total) => {
   let numCell = document.createElement('td');
   numCell.innerText = i;
 
-  let dateCell = document.createElement('td');
-  dateCell.innerText = date;
-  dateCell.className = "date";
+  let startDateCell = document.createElement('td');
+  startDateCell.innerText = startDate;
+  startDateCell.className = "startDate";
+
+  let closeDateCell = document.createElement('td');
+  closeDateCell.innerText = closeDate;
+  closeDateCell.className = "closeDate";
 
   let totalCell = document.createElement('td');
   totalCell.innerText = total;
@@ -17,7 +21,8 @@ const createRow = (i, name, date, total) => {
   let row = document.createElement('tr');
   row.appendChild(numCell);
   row.appendChild(nameCell);
-  row.appendChild(dateCell);
+  row.appendChild(startDateCell);
+  row.appendChild(closeDateCell);
   row.appendChild(totalCell);
 
   let table = document.getElementById('table-body');
@@ -31,7 +36,7 @@ const loadData = async () => {
   table.innerHTML = '';
   let i = 1;
   for (let data of json) {
-    createRow(i, data.nama, data.waktu_buka, data.jumlah_pendaftar);
+    createRow(i, data.nama, data.waktu_buka, data.waktu_tutup, data.jumlah_pendaftar);
     i++;
   }
 };
