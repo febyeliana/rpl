@@ -52,9 +52,7 @@ const getProfileByNim = async () => {
   let json = await result.json();
   let item = json[0];
 
-  let nimElem = $('nim');
   let emailElem = $('email');
-  let passwordElem = $('password');
   let namaElem = $('nama');
   let no_teleponElem = $('no_telepon');
   let usiaElem = $('usia');
@@ -64,9 +62,7 @@ const getProfileByNim = async () => {
   let pendapatanElem = $('pendapatan');
   let berkasElem = $('berkas');
 
-  nimElem.value = item.nim;
   emailElem.value = item.email;
-  passwordElem.value = item.password;
   namaElem.value = item.nama;
   no_teleponElem.value = item.no_telepon;
   usiaElem.value = item.usia;
@@ -78,7 +74,6 @@ const getProfileByNim = async () => {
 };
 
 const updateProfile = async () => {
-  let nimElem = $('nim');
   let emailElem = $('email');
   let passwordElem = $('password');
   let namaElem = $('nama');
@@ -96,10 +91,7 @@ const updateProfile = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "nama": namaElem.value,
-      "nim": nimElem.value, 
       "email": emailElem.value,
-      "password": passwordElem.value, 
       "nama": namaElem.value, 
       "no_telepon": no_teleponElem.value, 
       "usia": parseInt(usiaElem.value),

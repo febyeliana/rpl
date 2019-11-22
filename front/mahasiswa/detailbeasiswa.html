@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type"text/css" href="williamstyle.css">
 	<title>Info Mahasiswa</title>
 	<script src="scriptmahasiswa/ceklogin.js"></script>
-	<script src="scriptmahasiswa/profilmahasiswa.js"></script>
+	<script src="scriptmahasiswa/beasiswa.js"></script>
 	<script src="scriptmahasiswa/logoutmahasiswa.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,12 +15,12 @@
 	</div>
 
 	<div class="navbar">
-	  <a href="infomahasiswa.html" class="active">Personal Info</a>
-	  <a href="beasiswa.html">Beasiswa</a>
+	  <a href="infomahasiswa.html">Personal Info</a>
+	  <a href="beasiswa.html" class="active">Beasiswa</a>
 	  <a href="status.html">Status</a>
 	</div>
 	<div class="main">
-		<h1>Data Diri Mahasiswa</h1>
+		<h1>Detail Beasiswa</h1>
 		<table class="tabledatadiri">
 		<thead>
 		<tr align="left">
@@ -29,28 +29,20 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>nim</td>
-				<td id="nim"></td>
-			</tr>
-			<tr>
-				<td>email</td>
-				<td id="email"></td>
-			</tr>
-			<tr>
-				<td>password</td>
-				<td id="password"></td>
-			</tr>
-			<tr>
 				<td>nama</td>
 				<td id="nama"></td>
 			</tr>
 			<tr>
-				<td>no_telepon</td>
-				<td id="no_telepon"></td>
+				<td>waktu_buka</td>
+				<td id="waktu_buka"></td>
 			</tr>
 			<tr>
-				<td>usia</td>
-				<td id="usia"></td>
+				<td>waktu_tutup</td>
+				<td id="waktu_tutup"></td>
+			</tr>
+			<tr>
+				<td>fakultas</td>
+				<td id="fakultas"></td>
 			</tr>
 			<tr>
 				<td>jurusan</td>
@@ -61,24 +53,35 @@
 				<td id="semester"></td>
 			</tr>
 			<tr>
-				<td>gpa</td>
-				<td id="gpa"></td>
+				<td>min_gpa</td>
+				<td id="min_gpa"></td>
 			</tr>
 			<tr>
-				<td>pendapatan</td>
-				<td id="pendapatan"></td>
+				<td>deskripsi</td>
+				<td id="deskripsi"></td>
 			</tr>
 			<tr>
-				<td>berkas</td>
-				<td id="berkas"></td>
+				<td>batas_semester</td>
+				<td id="batas_semester"></td>
+			</tr>
+			<tr>
+				<td>tipe</td>
+				<td id="tipe"></td>
+			</tr>
+			<tr>
+				<td>aktif</td>
+				<td id="aktif"></td>
+			</tr>
+			<tr>
+				<td>ketersediaan</td>
+				<td id="ketersediaan"></td>
 			</tr>
 		</tbody>
 		</table>
-		<button type="button" onclick="location.href='editinfo.html'">Edit</button>
 		<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	</div>
 </body>
 <script>
-	window.onload = () => {cekLogin(true); getProfile();}
+	window.onload = () => {cekLogin(true); getProfileById();}
 </script>
 </html>
