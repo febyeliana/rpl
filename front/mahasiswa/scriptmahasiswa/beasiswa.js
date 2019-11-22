@@ -1,6 +1,7 @@
 function createRow(i, name, description) {
 			let nameCell = document.createElement('td');
 			nameCell.innerText = name;
+			nameCell.className = "nama";
 			let numCell = document.createElement('td');
 			numCell.innerText = i;
 			let descriptionCell = document.createElement('td');
