@@ -8,7 +8,7 @@
 
 ### Stack (production server):
 1. Virtual machine: Amazon Web Service EC2 t2.micro
-2. Operating system: Red Hat Enterprise Linuz (RHEL) 8
+2. Operating system: Red Hat Enterprise Linux (RHEL) 8
 3. Web server: Nginx 1.14.1
 4. Web Server Gateway Interface (WSGI): Gunicorn 20.0.0
 5. Back End: Python 3.6.8 with Flask + PostgreSQL 10.10
@@ -18,7 +18,7 @@
 #### A. Without Installation
 1. Browser with support for HTML rendering and JavaScript.
 #### B. With Installation
-1. Operating system: RHEL 8 or Centos 8
+1. Operating system: RHEL 8 or CentOS 8
 2. Interpreter: Python 3.6.8
 3. RDBMS: PostgreSQL 10.10
 4. Versioning: Git
