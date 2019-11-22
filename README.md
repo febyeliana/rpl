@@ -52,7 +52,7 @@
 2. Documentation: https://orange-water-4285.postman.co/collections/9500366-0e70c673-8a24-43d9-af95-76ddd61edcbc?version=latest&workspace=823da7b9-c6b6-44f6-8a22-0b192f261509
 
 ### Installation:
-#### Simple installation (softcore):
+#### A. Simple installation (softcore):
 1. Clone git repository to your local path:
 ```console
 git clone https://github.com/febyeliana/rpl.git 
@@ -76,7 +76,7 @@ cd ../penyedia
 ```
 7. Open index.html on your browser.
 
-#### Full installation (hardcore):
+#### B. Full installation (hardcore):
 1. Install the back-end components on Gunicorn and Nginx by following instruction at this link: https://github.com/febyeliana/rpl/blob/master/AWS_Deployment_Nginx_Gunicorn_Deployment.txt
 
 2. Install front-end components on Nginx by following instruction at this link: https://github.com/febyeliana/rpl/blob/master/AWS_Deployment_Nginx_PBMPS_FrontEnd.txt
