@@ -35,7 +35,7 @@ const createRow = (tableId, bea, i, name, status) => {
   row.appendChild(numCell);
   row.appendChild(nameCell);
   row.appendChild(statusCell);
-  //console.log(row);
+  console.log(row);
   nameCell.addEventListener('click', () => detail(name));
 
   let table = document.getElementById(tableId);
@@ -92,7 +92,11 @@ const acceptPendaftar = async (tableId) => {
   let id = window.localStorage.getItem('id');
 
   for (let r of rows) {
+    console.log(r);
     let nameCell = r.getElementsByClassName('name')[0];
+    if (nameCell === undefined) {
+      continue;
+    }
     let statusCell = r.getElementsByClassName('status')[0];
     let statusInput = statusCell.getElementsByTagName('input')[0];
     let beaCell = r.getElementsByClassName('bea')[0];
