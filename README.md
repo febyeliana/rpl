@@ -39,8 +39,8 @@
 ### Usage:
 #### A. PBMPS-Mahasiswa
 1. Access this URL: http://3.227.193.57:9001
-2. Use this username: nekopara
-3. Use this password: nekopara
+2. Use this username: wealth
+3. Use this password: wealth
 
 #### B. PBMPS-Penyedia
 1. Access this URL: http://3.227.193.57:9002
