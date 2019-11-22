@@ -1,5 +1,11 @@
 # Tugas Besar Rekayasa Perangkat Lunak STI
 ## Pengeloaan Beasiswa Mahasiswa Program Sarjana
+### Created By : Group 1
+1. William Halim / 18217021 (Commit name: William)
+2. Nicholaus Danispadmanaba Y / 18217028 (Commit name: osboxes.org or nicholausdy or Cloud User)
+3. Feby Eliana Tengry / 18217030 (Commit name: Feby)
+4. Dicky / 18217041 (Commit name: dicky)
+
 ### Stack (production server):
 1. Virtual machine: Amazon Web Service EC2 t2.micro
 2. Operating system: Red Hat Enterprise Linuz (RHEL) 8
@@ -7,12 +13,6 @@
 4. Web Server Gateway Interface (WSGI): Gunicorn 20.0.0
 5. Back End: Python 3.6.8 with Flask + PostgreSQL 10.10
 6. Front End: HTML, CSS, and native JavaScript
-
-### Created By : Group 1
-1. William Halim / 18217021
-2. Nicholaus Danispadmanaba Y / 18217028
-3. Feby Eliana Tengry / 18217030
-4. Dicky / 18217041
 
 ### Requirements 
 #### A. Without Installation
