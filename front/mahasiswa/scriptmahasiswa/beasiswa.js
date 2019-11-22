@@ -16,19 +16,19 @@ function createRow(i, name, description) {
 }
 
 async function loadData() {
-	let jurusan = window.localStorage.getItem('jurusan');
-	let semester = window.localStorage.getItem('semester');
-	let gpa = window.localStorage.getItem('gpa');
-	let result = await fetch(`http://3.227.193.57:9000/beasiswa/jurusan/${jurusan}/semester/${semester}/gpa/${gpa}`);
-	let json = await result.json();
-	let table = document.getElementById('bea');
-	table.innerHTML = '';
-	let i = 1;
-	for (let data of json) {
-		createRow(i, data.nama, data.deskripsi);
-		i++;
+		let jurusan = window.localStorage.getItem('jurusan');
+		let semester = window.localStorage.getItem('semester');
+		let gpa = window.localStorage.getItem('gpa');
+		let result = await fetch(`http://3.227.193.57:9000/beasiswa/jurusan/${jurusan}/semester/${semester}/gpa/${gpa}`);
+		let json = await result.json();
+		let table = document.getElementById('bea');
+		table.innerHTML = '';
+		let i = 1;
+		for (let data of json) {
+			createRow(i, data.nama, data.deskripsi);
+			i++;
+		}
 	}
-}
 
 	const applyBeasiswa = async () => {
 		let idpenyediabeasiswa = window.localStorage.getItem('idpenyediabeasiswa');
@@ -46,29 +46,29 @@ async function loadData() {
 
 
 
-  await fetch(`http://3.227.193.57:9000/pilihanbeasiswa`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "id_penyedia": parseInt(id_penyediaElem),
-      "nama_beasiswa":nama_beasiswaElem,
-      "nim":nimElem
-    })
-  })
+	  await fetch(`http://3.227.193.57:9000/pilihanbeasiswa`, {
+	    method: 'POST',
+	    mode:'cors',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify({
+	      "id_penyedia": parseInt(id_penyediaElem),
+	      "nama_beasiswa":nama_beasiswaElem,
+	      "nim":nimElem
+	    })
+	  })
 
-  console.log(
-	JSON.stringify({
-      "id_penyedia": parseInt(id_penyediaElem),
-      "nama_beasiswa":nama_beasiswaElem,
-      "nim":nimElem
-    })
-   )
-  let urlPart = window.location.href.split('/');
-    window.location = urlPart.splice(0, urlPart.length-1).join('/') + '/beasiswa.html';
-    return;   
+	  console.log(
+		JSON.stringify({
+	      "id_penyedia": parseInt(id_penyediaElem),
+	      "nama_beasiswa":nama_beasiswaElem,
+	      "nim":nimElem
+	    })
+	   )
+	  let urlPart = window.location.href.split('/');
+	    window.location = urlPart.splice(0, urlPart.length-1).join('/') + '/beasiswa.html';
+	    return;   
 };
 
 const detail = async (name) => {
