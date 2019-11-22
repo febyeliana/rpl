@@ -27,7 +27,7 @@
 			<th>Atribut</th>
 			<th>Informasi</th>
 		</thead>
-		<tbody>
+		<tbody id="scholarship">
 			<tr>
 				<td>nama</td>
 				<td id="nama"></td>
@@ -78,10 +78,11 @@
 			</tr>
 		</tbody>
 		</table>
+		<button type="buttonformmhs" id="logout" onclick="applyBeasiswa()">Apply</button>
 		<button type="buttonformmhs" id="logout" onclick="logout()">Logout</button>
 	</div>
 </body>
 <script>
-	window.onload = () => {cekLogin(true); getProfileById();}
+	window.onload = () => {cekLogin(true); getProfileByName();}
 </script>
 </html>

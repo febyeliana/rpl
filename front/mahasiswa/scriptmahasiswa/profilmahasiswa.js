@@ -44,7 +44,7 @@ const getProfile = async () => {
         pendapatanElem.innerText = item.pendapatan;
         berkasElem.innerText = item.berkas;
         window.localStorage.nim = item.nim;
-      
+        
         return;
       }
     }
