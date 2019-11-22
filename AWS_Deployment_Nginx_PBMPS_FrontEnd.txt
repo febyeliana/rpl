@@ -1,0 +1,54 @@
+WEBSITE MAHASISWA
+Buka port 9001/tcp
+mkdir pbmps-mahasiswa
+Copy semua file dari /front/mahasiswa ke dalam pbmps-mahasiswa
+sudo chown -R nginx:nginx pbmps-mahasiswa
+chmod 664 -R pbmps-mahasiswa
+cd pbmps-mahasiswa
+chmod 775 scriptmahasiswa
+cd ..
+sudo mv pbmps-mahasiswa /var/www/html
+sudo su
+cd /var/www/html
+chmod 755 pbmps-mahasiswa
+chcon -Rt httpd_sys_content_t pbmps-mahasiswa
+Matikan default_server
+vim /etc/nginx/nginx.conf
+ server {
+        listen 0.0.0.0:9001;
+        server_name 192.168.43.206;
+        root /var/www/html/pbmps-mahasiswa;
+        index login.html;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+   }
+
+WEBSITE PENYEDIA
+Buka port 9002/tcp
+mkdir pbmps-penyedia
+Copy semua file dari /front/penyedia ke dalam pbmps-penyedia
+sudo chown -R nginx:nginx pbmps-penyedia
+chmod 664 -R pbmps-penyedia
+cd pbmps-penyedia
+chmod 775 script
+cd ..
+sudo mv pbmps-penyedia /var/www/html
+sudo su
+cd /var/www/html
+chmod 755 pbmps-penyedia
+chcon -Rt httpd_sys_content_t pbmps-penyedia
+Matikan default_server
+vim /etc/nginx/nginx.conf
+ server {
+        listen 0.0.0.0:9002;
+        server_name 192.168.43.206;
+        root /var/www/html/pbmps-penyedia;
+        index index.html;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+   }
+
+written by: Nicholaus Danispadmanaba Y. /18217028
+
