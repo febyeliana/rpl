@@ -30,19 +30,19 @@ async function loadData() {
 	}
 }
 
-const applyBeasiswa = async () => {
-	let idpenyediabeasiswa = window.localStorage.getItem('idpenyediabeasiswa');
-	let namabeasiswa = window.localStorage.getItem('namabeasiswa');
-	let nim = window.localStorage.getItem('nim');
-	console.log(idpenyediabeasiswa);
-	console.log(namabeasiswa);
-	console.log(nim);
+	const applyBeasiswa = async () => {
+		let idpenyediabeasiswa = window.localStorage.getItem('idpenyediabeasiswa');
+		let namabeasiswa = window.localStorage.getItem('namabeasiswa');
+		let nim = window.localStorage.getItem('nim');
+		console.log(idpenyediabeasiswa);
+		console.log(namabeasiswa);
+		console.log(nim);
 
-	let id_penyediaElem = idpenyediabeasiswa;
-	let nama_beasiswaElem = namabeasiswa;
-	let nimElem = nim;
+		let id_penyediaElem = idpenyediabeasiswa;
+		let nama_beasiswaElem = namabeasiswa;
+		let nimElem = nim;
 
-	console.log(id_penyediaElem);
+		console.log(id_penyediaElem);
 
 
 
