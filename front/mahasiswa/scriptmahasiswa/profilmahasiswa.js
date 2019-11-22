@@ -10,10 +10,15 @@ const getProfile = async () => {
 
     let result2 = await fetch('http://3.227.193.57:9000/mahasiswa/nim/' +nims);
     let data = await result2.json();
+   
 
  
     for (let item of data) {
       console.log(item.nim);
+      let nimMahasiswa = window.localStorage.setItem('nim',nims);
+      let jurusanMahasiswa = window.localStorage.setItem('jurusan',item.jurusan);
+      let semesterMahasiswa = window.localStorage.setItem('semester',item.semester);
+      let gpaMahasiswa = window.localStorage.setItem('gpa',item.gpa);
       if (item.nim == nims) {
         let nimElem = $('nim');
         let emailElem = $('email');
