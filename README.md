@@ -44,8 +44,8 @@
 
 #### B. PBMPS-Penyedia
 1. Access this URL: http://3.227.193.57:9002
-2. Use this username: hatsune
-3. Use this password: hatsune
+2. Use this username: miku
+3. Use this password: miku
 
 #### C. Endpoint testing
 1. Access this URL: http://3.227.193.57:9000/<insert endpoint>
