@@ -5,8 +5,21 @@
 2. Nicholaus Danispadmanaba Y / 18217028 (Commit name: osboxes.org or nicholausdy or Cloud User)
 3. Feby Eliana Tengry / 18217030 (Commit name: Feby)
 4. Dicky / 18217041 (Commit name: dicky)
-
-### Stack (production server):
+### Table of Contents
+* [Created by](https://github.com/febyeliana/rpl#created-by--group-1)
+* [Stack](https://github.com/febyeliana/rpl#created-by--group-1)
+* [Requirements](https://github.com/febyeliana/rpl#requirements)
+  - [Without Installation](https://github.com/febyeliana/rpl#a-without-installation)
+  - [With Installation](https://github.com/febyeliana/rpl#b-with-installation)
+* [Usage](https://github.com/febyeliana/rpl#usage)
+  - [PBMPS-Mahasiswa](https://github.com/febyeliana/rpl#a-pbmps-mahasiswa)
+  - [PBMPS-Penyedia](https://github.com/febyeliana/rpl#b-pbmps-penyedia)
+  - [Endpoint testing](https://github.com/febyeliana/rpl#c-endpoint-testing)
+* [Installation](https://github.com/febyeliana/rpl#installation)
+  - [Simple installation](https://github.com/febyeliana/rpl#simple-installation-softcore)
+  - [Full installation](https://github.com/febyeliana/rpl#full-installation-hardcore)
+  
+### Stack (production server): 
 1. Virtual machine: Amazon Web Service EC2 t2.micro
 2. Operating system: Red Hat Enterprise Linux (RHEL) 8
 3. Web server: Nginx 1.14.1
