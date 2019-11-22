@@ -55,12 +55,6 @@ input[type=password]{
   	margin: 4px 0;
   	box-sizing: border-box
 }
-input[type=number]{
-	width: 90%;
-  	padding: 12px 20px;
-  	margin: 4px 0;
-  	box-sizing: border-box
-}
 input[type=text] : focus {
 	color : lightblue;
 }
@@ -92,7 +86,6 @@ form{
 	box-shadow: 0 0 20px rgba(0,0,0,0.15);
 	min-width: 500px;
 	margin: 3% 0;
-	text-align: left;
 }
 .tablepersonalinfo tr{
 	border-bottom: 1px solid #ddd;
